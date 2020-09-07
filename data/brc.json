@@ -2,461 +2,553 @@
   {
     "date": "2020-10-01",
     "friendlyDate": "Thursday, October 01, 2020",
-    "passage": "Mat 1-4; Ps 1"
+    "passage": "Matthew 1-4; Psalm 1",
+    "friendlyPassage": "Matthew 1-4; Psalm 1"
   },
   {
     "date": "2020-10-02",
     "friendlyDate": "Friday, October 02, 2020",
-    "passage": "Mat 5-8; Ps 2"
+    "passage": "Matthew 5-8; Psalm 2",
+    "friendlyPassage": "Matthew 5-8; Psalm 2"
   },
   {
     "date": "2020-10-03",
     "friendlyDate": "Saturday, October 03, 2020",
-    "passage": "Mat 9-12; Ps 3"
+    "passage": "Matthew 9-12; Psalm 3",
+    "friendlyPassage": "Matthew 9-12; Psalm 3"
   },
   {
     "date": "2020-10-04",
     "friendlyDate": "Sunday, October 04, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-10-05",
     "friendlyDate": "Monday, October 05, 2020",
-    "passage": "Mat 13-16; Ps 4"
+    "passage": "Matthew 13-16; Psalm 4",
+    "friendlyPassage": "Matthew 13-16; Psalm 4"
   },
   {
     "date": "2020-10-06",
     "friendlyDate": "Tuesday, October 06, 2020",
-    "passage": "Mat 17-20; Ps 5"
+    "passage": "Matthew 17-20; Psalm 5",
+    "friendlyPassage": "Matthew 17-20; Psalm 5"
   },
   {
     "date": "2020-10-07",
     "friendlyDate": "Wednesday, October 07, 2020",
-    "passage": "Mat 21-24; Ps 6"
+    "passage": "Matthew 21-24; Psalm 6",
+    "friendlyPassage": "Matthew 21-24; Psalm 6"
   },
   {
     "date": "2020-10-08",
     "friendlyDate": "Thursday, October 08, 2020",
-    "passage": "Mat 25-28; Ps 7"
+    "passage": "Matthew 25-28; Psalm 7",
+    "friendlyPassage": "Matthew 25-28; Psalm 7"
   },
   {
     "date": "2020-10-09",
     "friendlyDate": "Friday, October 09, 2020",
-    "passage": "Catch Up Day; Prov 1-4"
+    "passage": "Proverbs 1-4",
+    "friendlyPassage": "Catch Up Day; Proverbs 1-4"
   },
   {
     "date": "2020-10-10",
     "friendlyDate": "Saturday, October 10, 2020",
-    "passage": "Mk 1-4; Ps 8"
+    "passage": "Mark 1-4; Psalm 8",
+    "friendlyPassage": "Mark 1-4; Psalm 8"
   },
   {
     "date": "2020-10-11",
     "friendlyDate": "Sunday, October 11, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-10-12",
     "friendlyDate": "Monday, October 12, 2020",
-    "passage": "Mk 5-8; Ps 9"
+    "passage": "Mark 5-8; Psalm 9",
+    "friendlyPassage": "Mark 5-8; Psalm 9"
   },
   {
     "date": "2020-10-13",
     "friendlyDate": "Tuesday, October 13, 2020",
-    "passage": "Mk 9-12; Ps 10"
+    "passage": "Mark 9-12; Psalm 10",
+    "friendlyPassage": "Mark 9-12; Psalm 10"
   },
   {
     "date": "2020-10-14",
     "friendlyDate": "Wednesday, October 14, 2020",
-    "passage": "Mk 13-16; Ps 11"
+    "passage": "Mark 13-16; Psalm 11",
+    "friendlyPassage": "Mark 13-16; Psalm 11"
   },
   {
     "date": "2020-10-15",
     "friendlyDate": "Thursday, October 15, 2020",
-    "passage": "Luk 1-4; Ps 12"
+    "passage": "Luke 1-4; Psalm 12",
+    "friendlyPassage": "Luke 1-4; Psalm 12"
   },
   {
     "date": "2020-10-16",
     "friendlyDate": "Friday, October 16, 2020",
-    "passage": "Luk 5-8; Ps 13"
+    "passage": "Luke 5-8; Psalm 13",
+    "friendlyPassage": "Luke 5-8; Psalm 13"
   },
   {
     "date": "2020-10-17",
     "friendlyDate": "Saturday, October 17, 2020",
-    "passage": "Luk 9-12; Ps 14"
+    "passage": "Luke 9-12; Psalm 14",
+    "friendlyPassage": "Luke 9-12; Psalm 14"
   },
   {
     "date": "2020-10-18",
     "friendlyDate": "Sunday, October 18, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-10-19",
     "friendlyDate": "Monday, October 19, 2020",
-    "passage": "Catch Up Day; Prov 5-7"
+    "passage": "Proverbs 5-7",
+    "friendlyPassage": "Catch Up Day; Proverbs 5-7"
   },
   {
     "date": "2020-10-20",
     "friendlyDate": "Tuesday, October 20, 2020",
-    "passage": "Luk 13-16; Ps 15"
+    "passage": "Luke 13-16; Psalm 15",
+    "friendlyPassage": "Luke 13-16; Psalm 15"
   },
   {
     "date": "2020-10-21",
     "friendlyDate": "Wednesday, October 21, 2020",
-    "passage": "Luk 17-21; Ps 16"
+    "passage": "Luke 17-21; Psalm 16",
+    "friendlyPassage": "Luke 17-21; Psalm 16"
   },
   {
     "date": "2020-10-22",
     "friendlyDate": "Thursday, October 22, 2020",
-    "passage": "Luk 22-24; John 1; Ps 17"
+    "passage": "Luke 22-24; John 1; Psalm 17",
+    "friendlyPassage": "Luke 22-24; John 1; Psalm 17"
   },
   {
     "date": "2020-10-23",
     "friendlyDate": "Friday, October 23, 2020",
-    "passage": "John 2-5; Ps 18"
+    "passage": "John 2-5; Psalm 18",
+    "friendlyPassage": "John 2-5; Psalm 18"
   },
   {
     "date": "2020-10-24",
     "friendlyDate": "Saturday, October 24, 2020",
-    "passage": "John 6-9; Ps 19"
+    "passage": "John 6-9; Psalm 19",
+    "friendlyPassage": "John 6-9; Psalm 19"
   },
   {
     "date": "2020-10-25",
     "friendlyDate": "Sunday, October 25, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-10-26",
     "friendlyDate": "Monday, October 26, 2020",
-    "passage": "John 10-13; Ps 20"
+    "passage": "John 10-13; Psalm 20",
+    "friendlyPassage": "John 10-13; Psalm 20"
   },
   {
     "date": "2020-10-27",
     "friendlyDate": "Tuesday, October 27, 2020",
-    "passage": "John 14-17; Ps 21"
+    "passage": "John 14-17; Psalm 21",
+    "friendlyPassage": "John 14-17; Psalm 21"
   },
   {
     "date": "2020-10-28",
     "friendlyDate": "Wednesday, October 28, 2020",
-    "passage": "Catch Up Day; Prov 8-11"
+    "passage": "Proverbs 8-11",
+    "friendlyPassage": "Catch Up Day; Proverbs 8-11"
   },
   {
     "date": "2020-10-29",
     "friendlyDate": "Thursday, October 29, 2020",
-    "passage": "John 18-21; Ps 22"
+    "passage": "John 18-21; Psalm 22",
+    "friendlyPassage": "John 18-21; Psalm 22"
   },
   {
     "date": "2020-10-30",
     "friendlyDate": "Friday, October 30, 2020",
-    "passage": "Acts 1-4; Ps 23"
+    "passage": "Acts 1-4; Psalm 23",
+    "friendlyPassage": "Acts 1-4; Psalm 23"
   },
   {
     "date": "2020-10-31",
     "friendlyDate": "Saturday, October 31, 2020",
-    "passage": "Acts 5-8; Ps 24"
+    "passage": "Acts 5-8; Psalm 24",
+    "friendlyPassage": "Acts 5-8; Psalm 24"
   },
   {
     "date": "2020-11-01",
     "friendlyDate": "Sunday, November 01, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-11-02",
     "friendlyDate": "Monday, November 02, 2020",
-    "passage": "Acts 9-12; Ps 25"
+    "passage": "Acts 9-12; Psalm 25",
+    "friendlyPassage": "Acts 9-12; Psalm 25"
   },
   {
     "date": "2020-11-03",
     "friendlyDate": "Tuesday, November 03, 2020",
-    "passage": "Acts 13-16; Ps 26"
+    "passage": "Acts 13-16; Psalm 26",
+    "friendlyPassage": "Acts 13-16; Psalm 26"
   },
   {
     "date": "2020-11-04",
     "friendlyDate": "Wednesday, November 04, 2020",
-    "passage": "Acts 17-20; Ps 27"
+    "passage": "Acts 17-20; Psalm 27",
+    "friendlyPassage": "Acts 17-20; Psalm 27"
   },
   {
     "date": "2020-11-05",
     "friendlyDate": "Thursday, November 05, 2020",
-    "passage": "Acts 21-24; Ps 28"
+    "passage": "Acts 21-24; Psalm 28",
+    "friendlyPassage": "Acts 21-24; Psalm 28"
   },
   {
     "date": "2020-11-06",
     "friendlyDate": "Friday, November 06, 2020",
-    "passage": "Catch Up Day; Prov 12-15"
+    "passage": "Proverbs 12-15",
+    "friendlyPassage": "Catch Up Day; Proverbs 12-15"
   },
   {
     "date": "2020-11-07",
     "friendlyDate": "Saturday, November 07, 2020",
-    "passage": "Acts 25-28; Ps 29"
+    "passage": "Acts 25-28; Psalm 29",
+    "friendlyPassage": "Acts 25-28; Psalm 29"
   },
   {
     "date": "2020-11-08",
     "friendlyDate": "Sunday, November 08, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-11-09",
     "friendlyDate": "Monday, November 09, 2020",
-    "passage": "Rom 1-4; Ps 30"
+    "passage": "Romans 1-4; Psalm 30",
+    "friendlyPassage": "Romans 1-4; Psalm 30"
   },
   {
     "date": "2020-11-10",
     "friendlyDate": "Tuesday, November 10, 2020",
-    "passage": "Rom 5-8; Ps 31"
+    "passage": "Romans 5-8; Psalm 31",
+    "friendlyPassage": "Romans 5-8; Psalm 31"
   },
   {
     "date": "2020-11-11",
     "friendlyDate": "Wednesday, November 11, 2020",
-    "passage": "Rom 9-13; Ps 32"
+    "passage": "Romans 9-13; Psalm 32",
+    "friendlyPassage": "Romans 9-13; Psalm 32"
   },
   {
     "date": "2020-11-12",
     "friendlyDate": "Thursday, November 12, 2020",
-    "passage": "Rom 14-16; 1 Co 1; Ps 33"
+    "passage": "Romans 14-16; 1 Corinthians 1; Psalm 33",
+    "friendlyPassage": "Romans 14-16; 1 Corinthians 1; Psalm 33"
   },
   {
     "date": "2020-11-13",
     "friendlyDate": "Friday, November 13, 2020",
-    "passage": "1 Co 2-5; Ps 34"
+    "passage": "1 Corinthians 2-5; Psalm 34",
+    "friendlyPassage": "1 Corinthians 2-5; Psalm 34"
   },
   {
     "date": "2020-11-14",
     "friendlyDate": "Saturday, November 14, 2020",
-    "passage": "Catch Up Day; Prov 16-19"
+    "passage": "Proverbs 16-19",
+    "friendlyPassage": "Catch Up Day; Proverbs 16-19"
   },
   {
     "date": "2020-11-15",
     "friendlyDate": "Sunday, November 15, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-11-16",
     "friendlyDate": "Monday, November 16, 2020",
-    "passage": "1 Co 6-9; Ps 35"
+    "passage": "1 Corinthians 6-9; Psalm 35",
+    "friendlyPassage": "1 Corinthians 6-9; Psalm 35"
   },
   {
     "date": "2020-11-17",
     "friendlyDate": "Tuesday, November 17, 2020",
-    "passage": "1 Co 10-13; Ps 36"
+    "passage": "1 Corinthians 10-13; Psalm 36",
+    "friendlyPassage": "1 Corinthians 10-13; Psalm 36"
   },
   {
     "date": "2020-11-18",
     "friendlyDate": "Wednesday, November 18, 2020",
-    "passage": "1 Co 14-16; 2 Co 1; Ps 37"
+    "passage": "1 Corinthians 14-16; 2 Corinthians 1; Psalm 37",
+    "friendlyPassage": "1 Corinthians 14-16; 2 Corinthians 1; Psalm 37"
   },
   {
     "date": "2020-11-19",
     "friendlyDate": "Thursday, November 19, 2020",
-    "passage": "2 Co 2-5; Ps 38"
+    "passage": "2 Corinthians 2-5; Psalm 38",
+    "friendlyPassage": "2 Corinthians 2-5; Psalm 38"
   },
   {
     "date": "2020-11-20",
     "friendlyDate": "Friday, November 20, 2020",
-    "passage": "2 Co 6-9; Ps 39"
+    "passage": "2 Corinthians 6-9; Psalm 39",
+    "friendlyPassage": "2 Corinthians 6-9; Psalm 39"
   },
   {
     "date": "2020-11-21",
     "friendlyDate": "Saturday, November 21, 2020",
-    "passage": "2 Co 10-13; Ps 40"
+    "passage": "2 Corinthians 10-13; Psalm 40",
+    "friendlyPassage": "2 Corinthians 10-13; Psalm 40"
   },
   {
     "date": "2020-11-22",
     "friendlyDate": "Sunday, November 22, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-11-23",
     "friendlyDate": "Monday, November 23, 2020",
-    "passage": "Gal 1-4; Ps 41"
+    "passage": "Galatians 1-4; Psalm 41",
+    "friendlyPassage": "Galatians 1-4; Psalm 41"
   },
   {
     "date": "2020-11-24",
     "friendlyDate": "Tuesday, November 24, 2020",
-    "passage": "Catch Up Day; Prov 20-22"
+    "passage": "Proverbs 20-22",
+    "friendlyPassage": "Catch Up Day; Proverbs 20-22"
   },
   {
     "date": "2020-11-25",
     "friendlyDate": "Wednesday, November 25, 2020",
-    "passage": "Gal 5-6; Eph 1-2; Ps 42"
+    "passage": "Galatians 5-6; Ephesians 1-2; Psalm 42",
+    "friendlyPassage": "Galatians 5-6; Ephesians 1-2; Psalm 42"
   },
   {
     "date": "2020-11-26",
     "friendlyDate": "Thursday, November 26, 2020",
-    "passage": "Eph 3-6; Ps 43"
+    "passage": "Ephesians 3-6; Psalm 43",
+    "friendlyPassage": "Ephesians 3-6; Psalm 43"
   },
   {
     "date": "2020-11-27",
     "friendlyDate": "Friday, November 27, 2020",
-    "passage": "Phil 1-4; Ps 44"
+    "passage": "Phillipians 1-4; Psalm 44",
+    "friendlyPassage": "Phillipians 1-4; Psalm 44"
   },
   {
     "date": "2020-11-28",
     "friendlyDate": "Saturday, November 28, 2020",
-    "passage": "Col 1-4; Ps 45"
+    "passage": "Colossians 1-4; Psalm 45",
+    "friendlyPassage": "Colossians 1-4; Psalm 45"
   },
   {
     "date": "2020-11-29",
     "friendlyDate": "Sunday, November 29, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-11-30",
     "friendlyDate": "Monday, November 30, 2020",
-    "passage": "1 Th 1-4; Ps 46"
+    "passage": "1 Thessalonians 1-4; Psalm 46",
+    "friendlyPassage": "1 Thessalonians 1-4; Psalm 46"
   },
   {
     "date": "2020-12-01",
     "friendlyDate": "Tuesday, December 01, 2020",
-    "passage": "1 Th 5; 2 Th 1-3; Ps 47"
+    "passage": "1 Thessalonians 5; 2 Thessalonians 1-3; Psalm 47",
+    "friendlyPassage": "1 Thessalonians 5; 2 Thessalonians 1-3; Psalm 47"
   },
   {
     "date": "2020-12-02",
     "friendlyDate": "Wednesday, December 02, 2020",
-    "passage": "1 Ti 1-5; Ps 48"
+    "passage": "1 Titus 1-5; Psalm 48",
+    "friendlyPassage": "1 Titus 1-5; Psalm 48"
   },
   {
     "date": "2020-12-03",
     "friendlyDate": "Thursday, December 03, 2020",
-    "passage": "Catch Up Day; Prov 23-25"
+    "passage": "Proverbs 23-25",
+    "friendlyPassage": "Catch Up Day; Proverbs 23-25"
   },
   {
     "date": "2020-12-04",
     "friendlyDate": "Friday, December 04, 2020",
-    "passage": "1 Ti 6; 2 Ti 1-3; Ps 49"
+    "passage": "1 Titus 6; 2 Titus 1-3; Psalm 49",
+    "friendlyPassage": "1 Titus 6; 2 Titus 1-3; Psalm 49"
   },
   {
     "date": "2020-12-05",
     "friendlyDate": "Saturday, December 05, 2020",
-    "passage": "2 Ti 4; Tit 1-3; Ps 50"
+    "passage": "2 Titus 4; Titus 1-3; Psalm 50",
+    "friendlyPassage": "2 Titus 4; Titus 1-3; Psalm 50"
   },
   {
     "date": "2020-12-06",
     "friendlyDate": "Sunday, December 06, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-12-07",
     "friendlyDate": "Monday, December 07, 2020",
-    "passage": "Phlm; Heb 1-3; Ps 51"
+    "passage": "Philemon; Hebrews 1-3; Psalm 51",
+    "friendlyPassage": "Philemon; Hebrews 1-3; Psalm 51"
   },
   {
     "date": "2020-12-08",
     "friendlyDate": "Tuesday, December 08, 2020",
-    "passage": "Heb 4-7; Ps 52"
+    "passage": "Hebrews 4-7; Psalm 52",
+    "friendlyPassage": "Hebrews 4-7; Psalm 52"
   },
   {
     "date": "2020-12-09",
     "friendlyDate": "Wednesday, December 09, 2020",
-    "passage": "Heb 8-11; Ps 53"
+    "passage": "Hebrews 8-11; Psalm 53",
+    "friendlyPassage": "Hebrews 8-11; Psalm 53"
   },
   {
     "date": "2020-12-10",
     "friendlyDate": "Thursday, December 10, 2020",
-    "passage": "Heb 12-13; Jam 1-2; Ps 54"
+    "passage": "Hebrews 12-13; Jam 1-2; Psalm 54",
+    "friendlyPassage": "Hebrews 12-13; Jam 1-2; Psalm 54"
   },
   {
     "date": "2020-12-11",
     "friendlyDate": "Friday, December 11, 2020",
-    "passage": "Jam 3-5; 1 Pe 1; Ps 55"
+    "passage": "Jam 3-5; 1 Peter 1; Psalm 55",
+    "friendlyPassage": "Jam 3-5; 1 Peter 1; Psalm 55"
   },
   {
     "date": "2020-12-12",
     "friendlyDate": "Saturday, December 12, 2020",
-    "passage": "Catch Up Day; Prov 26-28"
+    "passage": "Proverbs 26-28",
+    "friendlyPassage": "Catch Up Day; Proverbs 26-28"
   },
   {
     "date": "2020-12-13",
     "friendlyDate": "Sunday, December 13, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-12-14",
     "friendlyDate": "Monday, December 14, 2020",
-    "passage": "1 Pe 2-5; Ps 56"
+    "passage": "1 Peter 2-5; Psalm 56",
+    "friendlyPassage": "1 Peter 2-5; Psalm 56"
   },
   {
     "date": "2020-12-15",
     "friendlyDate": "Tuesday, December 15, 2020",
-    "passage": "2 Pe 1-3; 1 Jn 1; Ps 57"
+    "passage": "2 Peter 1-3; 1 John 1; Psalm 57",
+    "friendlyPassage": "2 Peter 1-3; 1 John 1; Psalm 57"
   },
   {
     "date": "2020-12-16",
     "friendlyDate": "Wednesday, December 16, 2020",
-    "passage": "1 Jn 2-5; Ps 58"
+    "passage": "1 John 2-5; Psalm 58",
+    "friendlyPassage": "1 John 2-5; Psalm 58"
   },
   {
     "date": "2020-12-17",
     "friendlyDate": "Thursday, December 17, 2020",
-    "passage": "2 Jn; 3 Jn; Jude; Rev 1; Ps 59"
+    "passage": "2 John; 3 John; Jude; Revelation 1; Psalm 59",
+    "friendlyPassage": "2 John; 3 John; Jude; Revelation 1; Psalm 59"
   },
   {
     "date": "2020-12-18",
     "friendlyDate": "Friday, December 18, 2020",
-    "passage": "Rev 2-5; Ps 60"
+    "passage": "Revelation 2-5; Psalm 60",
+    "friendlyPassage": "Revelation 2-5; Psalm 60"
   },
   {
     "date": "2020-12-19",
     "friendlyDate": "Saturday, December 19, 2020",
-    "passage": "Catch Up Day; Prov 29-31"
+    "passage": "Proverbs 29-31",
+    "friendlyPassage": "Catch Up Day; Proverbs 29-31"
   },
   {
     "date": "2020-12-20",
     "friendlyDate": "Sunday, December 20, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-12-21",
     "friendlyDate": "Monday, December 21, 2020",
-    "passage": "Advent"
+    "passage": "Advent",
+    "friendlyPassage": "Advent"
   },
   {
     "date": "2020-12-22",
     "friendlyDate": "Tuesday, December 22, 2020",
-    "passage": "Advent"
+    "passage": "Advent",
+    "friendlyPassage": "Advent"
   },
   {
     "date": "2020-12-23",
     "friendlyDate": "Wednesday, December 23, 2020",
-    "passage": "Advent"
+    "passage": "Advent",
+    "friendlyPassage": "Advent"
   },
   {
     "date": "2020-12-24",
     "friendlyDate": "Thursday, December 24, 2020",
-    "passage": "Advent"
+    "passage": "Advent",
+    "friendlyPassage": "Advent"
   },
   {
     "date": "2020-12-25",
     "friendlyDate": "Friday, December 25, 2020",
-    "passage": "Advent"
+    "passage": "Advent",
+    "friendlyPassage": "Advent"
   },
   {
     "date": "2020-12-26",
     "friendlyDate": "Saturday, December 26, 2020",
-    "passage": "Advent"
+    "passage": "Advent",
+    "friendlyPassage": "Advent"
   },
   {
     "date": "2020-12-27",
     "friendlyDate": "Sunday, December 27, 2020",
-    "passage": ""
+    "passage": "",
+    "friendlyPassage": ""
   },
   {
     "date": "2020-12-28",
     "friendlyDate": "Monday, December 28, 2020",
-    "passage": "Rev 6-9; Ps 61"
+    "passage": "Revelation 6-9; Psalm 61",
+    "friendlyPassage": "Revelation 6-9; Psalm 61"
   },
   {
     "date": "2020-12-29",
     "friendlyDate": "Tuesday, December 29, 2020",
-    "passage": "Rev 10-13; Ps 62"
+    "passage": "Revelation 10-13; Psalm 62",
+    "friendlyPassage": "Revelation 10-13; Psalm 62"
   },
   {
     "date": "2020-12-30",
     "friendlyDate": "Wednesday, December 30, 2020",
-    "passage": "Rev 14-17; Ps 63"
+    "passage": "Revelation 14-17; Psalm 63",
+    "friendlyPassage": "Revelation 14-17; Psalm 63"
   },
   {
     "date": "2020-12-31",
     "friendlyDate": "Thursday, December 31, 2020",
-    "passage": "Rev 18-22; Ps 64"
+    "passage": "Revelation 18-22; Psalm 64",
+    "friendlyPassage": "Revelation 18-22; Psalm 64"
   }
 ]
