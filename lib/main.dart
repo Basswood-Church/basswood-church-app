@@ -11,8 +11,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
-  final response = await client.get(
-      'https://www.basswoodchurch.net/app/brc.json');
+  final response =
+      await client.get('https://www.basswoodchurch.net/app/brc.json');
 
   // Use the compute function to run parseBrcDays in a separate isolate
   return compute(parseBrcDays, response.body);
@@ -161,8 +161,7 @@ class BrcDaysList extends StatelessWidget {
                   icon: Icon(Icons.remove_red_eye),
                   label: const Text('READ'),
                   onPressed: () {
-                    Navigator.push(
-                        context, ReaderPage(BrcDays[index].passage));
+                    Navigator.push(context, ReaderPage(BrcDays[index].passage));
                   },
                 ),
                 FlatButton.icon(
@@ -220,36 +219,37 @@ class ReaderPage extends MaterialPageRoute<Null> {
   ReaderPage(String passage)
       : super(builder: (BuildContext context) {
           return Scaffold(
-              appBar: AppBar(actions: [], title: Text(passage)),
-              body: WebviewScaffold(
-                url: 'https://basswoodchurch.net/app/read.php?q=' + Uri.encodeComponent(passage),
-              ),
-              // body: new FutureBuilder(
-              //     future: fetchPassage(new http.Client()),
-              //     builder: (context, snapshot) {
-              //       if (snapshot.hasData) {
-              //         Passage p = snapshot.data;
+            appBar: AppBar(actions: [], title: Text(passage)),
+            body: WebviewScaffold(
+              url: 'https://basswoodchurch.net/app/read.php?q=' +
+                  Uri.encodeComponent(passage),
+            ),
+            // body: new FutureBuilder(
+            //     future: fetchPassage(new http.Client()),
+            //     builder: (context, snapshot) {
+            //       if (snapshot.hasData) {
+            //         Passage p = snapshot.data;
 
-              //         // debugPrint('Step 3, build widget: ${snapshot.data}');
-              //         // Build the widget with data.
-              //         // return WebviewScaffold(
-              //         //   url: new Uri.dataFromString(p.passages.first.replaceAll("\’", "&#39"),
-              //         //           mimeType: 'text/html')
-              //         //       .toString(),
-              //         // );
-              //                               return WebviewScaffold(
-              //           url: 'https://basswoodchurch.net/app/read.php',
-              //         );
-              //         // return Center(
-              //         //     child: Container(
-              //         //         child: Text('hasData: ${snapshot.data}')));
-              //       } else {
-              //         // We can show the loading view until the data comes back.
-              //         // debugPrint('Step 1, build loading widget');
-              //         return CircularProgressIndicator();
-              //       }
-              //     })
-                  );
+            //         // debugPrint('Step 3, build widget: ${snapshot.data}');
+            //         // Build the widget with data.
+            //         // return WebviewScaffold(
+            //         //   url: new Uri.dataFromString(p.passages.first.replaceAll("\’", "&#39"),
+            //         //           mimeType: 'text/html')
+            //         //       .toString(),
+            //         // );
+            //                               return WebviewScaffold(
+            //           url: 'https://basswoodchurch.net/app/read.php',
+            //         );
+            //         // return Center(
+            //         //     child: Container(
+            //         //         child: Text('hasData: ${snapshot.data}')));
+            //       } else {
+            //         // We can show the loading view until the data comes back.
+            //         // debugPrint('Step 1, build loading widget');
+            //         return CircularProgressIndicator();
+            //       }
+            //     })
+          );
         });
 }
 
