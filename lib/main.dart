@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:intl/intl.dart';
 import 'package:flutter/foundation.dart';
@@ -90,7 +91,7 @@ class MyHomePage extends StatelessWidget {
             if (snapshot.hasError) print(snapshot.error);
 
             return snapshot.hasData
-                ? new BrcDaysList(BrcDays: snapshot.data)
+                ? new BrcDaysList(brcDays: snapshot.data)
                 : new Center(child: new CircularProgressIndicator());
           }),
       bottomNavigationBar: BottomNavigationBar(
@@ -121,25 +122,50 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class BrcDaysList extends StatelessWidget {
-  final List<BrcDay> BrcDays;
+class BrcDaysList extends StatefulWidget {
+  final List<BrcDay> brcDays;
 
-  BrcDaysList({Key key, this.BrcDays}) : super(key: key);
+  BrcDaysList({Key key, this.brcDays}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final ItemScrollController itemScrollController = ItemScrollController();
-    final ItemPositionsListener itemPositionsListener =
-        ItemPositionsListener.create();
+  _BrcDaysListState createState() => _BrcDaysListState(brcDays: this.brcDays);
+}
 
-    return new ScrollablePositionedList.builder(
-      itemCount: this.BrcDays.length,
-      itemBuilder: (BuildContext context, int index) =>
-          buildBrcDay(context, index),
-      itemScrollController: itemScrollController,
-      itemPositionsListener: itemPositionsListener,
-    );
+class _BrcDaysListState extends State<BrcDaysList> {
+  final List<BrcDay> brcDays;
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
+  _BrcDaysListState({this.brcDays});
+
+  @override
+  void initState() {
+    super.initState();
+
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+    // Get index of current day, or 0 if no match
+    final index =
+        max(this.brcDays.indexWhere((element) => element.date == today), 0);
+
+    // Need to delay some until list state is initialized, else scroll breaks
+    Future.delayed(
+        Duration(milliseconds: 0),
+        () => this
+            .itemScrollController
+            .scrollTo(index: index, duration: Duration(seconds: 2)));
   }
+
+  @override
+  Widget build(BuildContext context) => new ScrollablePositionedList.builder(
+        itemCount: this.brcDays.length,
+        itemBuilder: (BuildContext context, int index) =>
+            buildBrcDay(context, index),
+        itemScrollController: this.itemScrollController,
+        itemPositionsListener: this.itemPositionsListener,
+      );
 
   Widget buildBrcDay(BuildContext context, int index) {
     return Container(
@@ -149,10 +175,10 @@ class BrcDaysList extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Icon(
-                  (BrcDays[index].passage).isEmpty ? Icons.mood : Icons.book),
+                  (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book),
               title: Text(
-                  "${DateFormat('EEEE, MMMM d, y').format(BrcDays[index].date).toString()}"),
-              subtitle: Text(BrcDays[index].friendlyPassage),
+                  "${DateFormat('EEEE, MMMM d, y').format(brcDays[index].date).toString()}"),
+              subtitle: Text(brcDays[index].friendlyPassage),
             ),
             ButtonBar(
               children: <Widget>[
@@ -161,7 +187,7 @@ class BrcDaysList extends StatelessWidget {
                   icon: Icon(Icons.remove_red_eye),
                   label: const Text('READ'),
                   onPressed: () {
-                    Navigator.push(context, ReaderPage(BrcDays[index].passage));
+                    Navigator.push(context, ReaderPage(brcDays[index].passage));
                   },
                 ),
                 FlatButton.icon(
@@ -172,7 +198,7 @@ class BrcDaysList extends StatelessWidget {
                     _launchURL(
                         'http://www.esvapi.org/v2/rest/passageQuery?key=IP&output-format=mp3&passage=' +
                             Uri.encodeComponent(
-                                BrcDays[index].passage.toString()));
+                                brcDays[index].passage.toString()));
                   },
                 ),
               ],
@@ -224,31 +250,6 @@ class ReaderPage extends MaterialPageRoute<Null> {
               url: 'https://basswoodchurch.net/app/read.php?q=' +
                   Uri.encodeComponent(passage),
             ),
-            // body: new FutureBuilder(
-            //     future: fetchPassage(new http.Client()),
-            //     builder: (context, snapshot) {
-            //       if (snapshot.hasData) {
-            //         Passage p = snapshot.data;
-
-            //         // debugPrint('Step 3, build widget: ${snapshot.data}');
-            //         // Build the widget with data.
-            //         // return WebviewScaffold(
-            //         //   url: new Uri.dataFromString(p.passages.first.replaceAll("\’", "&#39"),
-            //         //           mimeType: 'text/html')
-            //         //       .toString(),
-            //         // );
-            //                               return WebviewScaffold(
-            //           url: 'https://basswoodchurch.net/app/read.php',
-            //         );
-            //         // return Center(
-            //         //     child: Container(
-            //         //         child: Text('hasData: ${snapshot.data}')));
-            //       } else {
-            //         // We can show the loading view until the data comes back.
-            //         // debugPrint('Step 1, build loading widget');
-            //         return CircularProgressIndicator();
-            //       }
-            //     })
           );
         });
 }
