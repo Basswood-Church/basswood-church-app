@@ -28,16 +28,14 @@ List<BrcDay> parseBrcDays(String responseBody) {
 
 class BrcDay {
   final DateTime date;
-  final String friendlyDate;
   final String passage;
   final String friendlyPassage;
 
-  BrcDay({this.date, this.friendlyDate, this.passage, this.friendlyPassage});
+  BrcDay({this.date, this.passage, this.friendlyPassage});
 
   factory BrcDay.fromJson(Map<String, dynamic> json) {
     return new BrcDay(
         date: (DateTime.parse(json['date'].toString())),
-        friendlyDate: json['friendlyDate'] as String,
         passage: json['passage'] as String,
         friendlyPassage: json['friendlyPassage'] as String);
   }
@@ -72,9 +70,9 @@ class MyHomePage extends StatelessWidget {
   void _onItemTapped(int index) {
     if (index == 1) {
       _launchURL('https://www.basswoodchurch.net/sermons/');
+    // } else if (index == 2) {
+    //   _launchURL('https://www.basswoodchurch.net/give');
     } else if (index == 2) {
-      _launchURL('https://www.basswoodchurch.net/give');
-    } else if (index == 3) {
       _launchURL('https://www.basswoodchurch.net/bulletin');
     }
   }
@@ -105,10 +103,10 @@ class MyHomePage extends StatelessWidget {
             icon: Icon(Icons.headset),
             title: Text('Sermons'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            title: Text('Giving'),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.card_giftcard),
+          //   title: Text('Giving'),
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.picture_as_pdf),
             title: Text('Bulletin'),
