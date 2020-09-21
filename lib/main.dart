@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:intl/intl.dart';
@@ -208,43 +207,13 @@ class _BrcDaysListState extends State<BrcDaysList> {
   }
 }
 
-Future<Passage> fetchPassage(http.Client client) async {
-  final response = await client.get(
-    'https://api.esv.org/v3/passage/html/?q=Gen+1:1&include-footnotes=false&include-footnote-body=false&include-short-copyright=false&include-copyright=false',
-    headers: {
-      HttpHeaders.authorizationHeader:
-          "Token 5ccfbffc6812ebe3b6f436330e3ce15daabac8d9"
-    },
-  );
-
-  // Use the compute function to run parseBrcDays in a separate isolate
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Passage.fromJson(json.decode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
-
-class Passage {
-  final List<String> passages;
-
-  Passage({this.passages});
-
-  factory Passage.fromJson(Map<String, dynamic> json) {
-    return new Passage(passages: json['passages'].cast<String>());
-  }
-}
-
 class ReaderPage extends MaterialPageRoute<Null> {
   ReaderPage(String passage)
       : super(builder: (BuildContext context) {
           return Scaffold(
             appBar: AppBar(actions: [], title: Text(passage)),
             body: WebviewScaffold(
+              hidden: true ,
               url: 'https://basswoodchurch.net/app/read.php?q=' +
                   Uri.encodeComponent(passage),
             ),
