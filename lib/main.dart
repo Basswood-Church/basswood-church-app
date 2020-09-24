@@ -213,7 +213,7 @@ class ReaderPage extends MaterialPageRoute<Null> {
           return Scaffold(
             appBar: AppBar(actions: [], title: Text(passage)),
             body: WebviewScaffold(
-              hidden: true ,
+              hidden: true,
               url: 'https://basswoodchurch.net/app/read.php?q=' +
                   Uri.encodeComponent(passage),
             ),
