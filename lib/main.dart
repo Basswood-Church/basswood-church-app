@@ -144,15 +144,13 @@ class _BrcDaysListState extends State<BrcDaysList> {
     final today = DateTime(now.year, now.month, now.day);
 
     // Get index of current day, or 0 if no match
-    final index =
-        max(this.brcDays.indexWhere((element) => element.date == today), 0);
+    final index = max(this.brcDays.indexWhere((element) => element.date == today), 0);
 
-    // Need to delay some until list state is initialized, else scroll breaks
     Future.delayed(
         Duration(milliseconds: 0),
         () => this
             .itemScrollController
-            .scrollTo(index: index, duration: Duration(seconds: 2)));
+            .jumpTo(index: index));
   }
 
   @override
