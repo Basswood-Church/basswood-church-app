@@ -21,10 +21,12 @@ Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
 
 // A function that will convert a response body into a List<BrcDay>
 List<BrcDay> parseBrcDays(String responseBody) {
-  final List<Map<String, dynamic>> parsed = json.decode(responseBody) as List<Map<String, dynamic>>;
+  final List<Map<String, dynamic>> parsed =
+      json.decode(responseBody) as List<Map<String, dynamic>>;
 
-  return parsed.map<BrcDay>((Map<String, dynamic> json) =>
-      BrcDay.fromJson(json)).toList();
+  return parsed
+      .map<BrcDay>((Map<String, dynamic> json) => BrcDay.fromJson(json))
+      .toList();
 }
 
 class BrcDay {
@@ -72,8 +74,8 @@ class MyHomePage extends StatelessWidget {
   void _onItemTapped(int index) {
     if (index == 1) {
       _launchURL('https://www.basswoodchurch.net/sermons/');
-    // } else if (index == 2) {
-    //   _launchURL('https://www.basswoodchurch.net/give');
+      // } else if (index == 2) {
+      //   _launchURL('https://www.basswoodchurch.net/give');
     } else if (index == 2) {
       _launchURL('https://www.basswoodchurch.net/bulletin');
     }
@@ -87,7 +89,8 @@ class MyHomePage extends StatelessWidget {
       ),
       body: FutureBuilder<List<BrcDay>>(
           future: fetchBrcDays(http.Client()),
-          builder: (BuildContext context, AsyncSnapshot<List<BrcDay>> snapshot) {
+          builder:
+              (BuildContext context, AsyncSnapshot<List<BrcDay>> snapshot) {
             if (snapshot.hasError) {
               print(snapshot.error);
             }
@@ -149,10 +152,10 @@ class _BrcDaysListState extends State<BrcDaysList> {
     final DateTime today = DateTime(now.year, now.month, now.day);
 
     // Get index of current day, or 0 if no match
-    final int index = max(brcDays.indexWhere((BrcDay element) => element.date == today), 0);
+    final int index =
+        max(brcDays.indexWhere((BrcDay element) => element.date == today), 0);
 
-    Future<void>.delayed(
-        const Duration(milliseconds: 0),
+    Future<void>.delayed(const Duration(milliseconds: 0),
         () => itemScrollController.jumpTo(index: index));
   }
 
@@ -174,8 +177,9 @@ class _BrcDaysListState extends State<BrcDaysList> {
             ListTile(
               leading: Icon(
                   (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book),
-              title: Text(
-                  DateFormat('EEEE, MMMM d, y').format(brcDays[index].date).toString()),
+              title: Text(DateFormat('EEEE, MMMM d, y')
+                  .format(brcDays[index].date)
+                  .toString()),
               subtitle: Text(brcDays[index].friendlyPassage),
             ),
             ButtonBar(
