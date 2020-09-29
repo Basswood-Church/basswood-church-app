@@ -9,9 +9,10 @@ import 'package:http/http.dart' as http;
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:http/http.dart';
 
 Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
-  final response =
+  final Response response =
       await client.get('https://www.basswoodchurch.net/app/brc.json');
 
   // Use the compute function to run parseBrcDays in a separate isolate
@@ -20,32 +21,33 @@ Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
 
 // A function that will convert a response body into a List<BrcDay>
 List<BrcDay> parseBrcDays(String responseBody) {
-  final parsed = json.decode(responseBody);
+  final List<Map<String, dynamic>> parsed = json.decode(responseBody) as List<Map<String, dynamic>>;
 
-  return parsed.map<BrcDay>((json) => new BrcDay.fromJson(json)).toList();
+  return parsed.map<BrcDay>((Map<String, dynamic> json) =>
+      BrcDay.fromJson(json)).toList();
 }
 
 class BrcDay {
-  final DateTime date;
-  final String passage;
-  final String friendlyPassage;
-
   BrcDay({this.date, this.passage, this.friendlyPassage});
 
   factory BrcDay.fromJson(Map<String, dynamic> json) {
-    return new BrcDay(
-        date: (DateTime.parse(json['date'].toString())),
+    return BrcDay(
+        date: DateTime.parse(json['date'].toString()),
         passage: json['passage'] as String,
         friendlyPassage: json['friendlyPassage'] as String);
   }
+
+  final DateTime date;
+  final String passage;
+  final String friendlyPassage;
 }
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
           accentIconTheme:
@@ -57,14 +59,15 @@ class MyApp extends StatelessWidget {
           primaryTextTheme: Theme.of(context)
               .primaryTextTheme
               .apply(bodyColor: Colors.white)),
-      home: new MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key key, this.title}) : super(key: key);
+
   final String title;
-  MyHomePage({Key key, this.title}) : super(key: key);
 
   void _onItemTapped(int index) {
     if (index == 1) {
@@ -78,18 +81,20 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Basswood Church'),
       ),
-      body: new FutureBuilder<List<BrcDay>>(
-          future: fetchBrcDays(new http.Client()),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) print(snapshot.error);
+      body: FutureBuilder<List<BrcDay>>(
+          future: fetchBrcDays(http.Client()),
+          builder: (BuildContext context, AsyncSnapshot<List<BrcDay>> snapshot) {
+            if (snapshot.hasError) {
+              print(snapshot.error);
+            }
 
             return snapshot.hasData
-                ? new BrcDaysList(brcDays: snapshot.data)
-                : new Center(child: new CircularProgressIndicator());
+                ? BrcDaysList(brcDays: snapshot.data)
+                : const Center(child: CircularProgressIndicator());
           }),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -120,46 +125,44 @@ class MyHomePage extends StatelessWidget {
 }
 
 class BrcDaysList extends StatefulWidget {
+  const BrcDaysList({Key key, this.brcDays}) : super(key: key);
+
   final List<BrcDay> brcDays;
 
-  BrcDaysList({Key key, this.brcDays}) : super(key: key);
-
   @override
-  _BrcDaysListState createState() => _BrcDaysListState(brcDays: this.brcDays);
+  _BrcDaysListState createState() => _BrcDaysListState(brcDays: brcDays);
 }
 
 class _BrcDaysListState extends State<BrcDaysList> {
+  _BrcDaysListState({this.brcDays});
+
   final List<BrcDay> brcDays;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
 
-  _BrcDaysListState({this.brcDays});
-
   @override
   void initState() {
     super.initState();
 
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
+    final DateTime now = DateTime.now();
+    final DateTime today = DateTime(now.year, now.month, now.day);
 
     // Get index of current day, or 0 if no match
-    final index = max(this.brcDays.indexWhere((element) => element.date == today), 0);
+    final int index = max(brcDays.indexWhere((BrcDay element) => element.date == today), 0);
 
-    Future.delayed(
-        Duration(milliseconds: 0),
-        () => this
-            .itemScrollController
-            .jumpTo(index: index));
+    Future<void>.delayed(
+        const Duration(milliseconds: 0),
+        () => itemScrollController.jumpTo(index: index));
   }
 
   @override
-  Widget build(BuildContext context) => new ScrollablePositionedList.builder(
-        itemCount: this.brcDays.length,
+  Widget build(BuildContext context) => ScrollablePositionedList.builder(
+        itemCount: brcDays.length,
         itemBuilder: (BuildContext context, int index) =>
             buildBrcDay(context, index),
-        itemScrollController: this.itemScrollController,
-        itemPositionsListener: this.itemPositionsListener,
+        itemScrollController: itemScrollController,
+        itemPositionsListener: itemPositionsListener,
       );
 
   Widget buildBrcDay(BuildContext context, int index) {
@@ -172,14 +175,14 @@ class _BrcDaysListState extends State<BrcDaysList> {
               leading: Icon(
                   (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book),
               title: Text(
-                  "${DateFormat('EEEE, MMMM d, y').format(brcDays[index].date).toString()}"),
+                  DateFormat('EEEE, MMMM d, y').format(brcDays[index].date).toString()),
               subtitle: Text(brcDays[index].friendlyPassage),
             ),
             ButtonBar(
               children: <Widget>[
                 FlatButton.icon(
                   color: Colors.blueGrey,
-                  icon: Icon(Icons.remove_red_eye),
+                  icon: const Icon(Icons.remove_red_eye),
                   label: const Text('READ'),
                   onPressed: () {
                     Navigator.push(context, ReaderPage(brcDays[index].passage));
@@ -187,7 +190,7 @@ class _BrcDaysListState extends State<BrcDaysList> {
                 ),
                 FlatButton.icon(
                   color: Colors.blueGrey,
-                  icon: Icon(Icons.headset),
+                  icon: const Icon(Icons.headset),
                   label: const Text('LISTEN'),
                   onPressed: () {
                     _launchURL(
@@ -205,11 +208,11 @@ class _BrcDaysListState extends State<BrcDaysList> {
   }
 }
 
-class ReaderPage extends MaterialPageRoute<Null> {
+class ReaderPage extends MaterialPageRoute<void> {
   ReaderPage(String passage)
       : super(builder: (BuildContext context) {
           return Scaffold(
-            appBar: AppBar(actions: [], title: Text(passage)),
+            appBar: AppBar(actions: const <Widget>[], title: Text(passage)),
             body: WebviewScaffold(
               hidden: true,
               url: 'https://basswoodchurch.net/app/read.php?q=' +
@@ -219,7 +222,7 @@ class ReaderPage extends MaterialPageRoute<Null> {
         });
 }
 
-_launchURL(String url) async {
+Future<void> _launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {
