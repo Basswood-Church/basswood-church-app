@@ -14,7 +14,7 @@ import 'util.dart';
 
 Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
   final Response response =
-  await client.get('https://www.basswoodchurch.net/app/brc.json');
+      await client.get('https://www.basswoodchurch.net/app/brc.json');
 
   // Use the compute function to run parseBrcDays in a separate isolate
   return compute(parseBrcDays, response.body);
@@ -23,7 +23,7 @@ Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
 // A function that will convert a response body into a List<BrcDay>
 List<BrcDay> parseBrcDays(String responseBody) {
   final List<Map<String, dynamic>> parsed =
-  json.decode(responseBody) as List<Map<String, dynamic>>;
+      json.decode(responseBody) as List<Map<String, dynamic>>;
 
   return parsed
       .map<BrcDay>((Map<String, dynamic> json) => BrcDay.fromJson(json))
@@ -60,7 +60,7 @@ class _BrcDaysListState extends State<BrcDaysList> {
   final List<BrcDay> brcDays;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
-  ItemPositionsListener.create();
+      ItemPositionsListener.create();
 
   @override
   void initState() {
@@ -71,20 +71,20 @@ class _BrcDaysListState extends State<BrcDaysList> {
 
     // Get index of current day, or 0 if no match
     final int index =
-    max(brcDays.indexWhere((BrcDay element) => element.date == today), 0);
+        max(brcDays.indexWhere((BrcDay element) => element.date == today), 0);
 
     Future<void>.delayed(const Duration(milliseconds: 0),
-            () => itemScrollController.jumpTo(index: index));
+        () => itemScrollController.jumpTo(index: index));
   }
 
   @override
   Widget build(BuildContext context) => ScrollablePositionedList.builder(
-    itemCount: brcDays.length,
-    itemBuilder: (BuildContext context, int index) =>
-        buildBrcDay(context, index),
-    itemScrollController: itemScrollController,
-    itemPositionsListener: itemPositionsListener,
-  );
+        itemCount: brcDays.length,
+        itemBuilder: (BuildContext context, int index) =>
+            buildBrcDay(context, index),
+        itemScrollController: itemScrollController,
+        itemPositionsListener: itemPositionsListener,
+      );
 
   Widget buildBrcDay(BuildContext context, int index) {
     return Container(
@@ -107,7 +107,8 @@ class _BrcDaysListState extends State<BrcDaysList> {
                   icon: const Icon(Icons.remove_red_eye),
                   label: const Text('READ'),
                   onPressed: () {
-                    Navigator.push(context, ReadingPage(brcDays[index].passage));
+                    Navigator.push(
+                        context, ReadingPage(brcDays[index].passage));
                   },
                 ),
                 FlatButton.icon(

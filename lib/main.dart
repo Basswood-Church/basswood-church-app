@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
           accentIconTheme:
-          Theme.of(context).accentIconTheme.copyWith(color: Colors.white),
+              Theme.of(context).accentIconTheme.copyWith(color: Colors.white),
           accentColor: Colors.blueAccent,
           primaryColor: Colors.blueGrey,
           primaryIconTheme:
-          Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
+              Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
           primaryTextTheme: Theme.of(context)
               .primaryTextTheme
               .apply(bodyColor: Colors.white)),
