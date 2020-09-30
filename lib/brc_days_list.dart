@@ -22,11 +22,11 @@ Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
 
 // A function that will convert a response body into a List<BrcDay>
 List<BrcDay> parseBrcDays(String responseBody) {
-  final List<Map<String, dynamic>> parsed =
-      json.decode(responseBody) as List<Map<String, dynamic>>;
+  final List<dynamic> parsed =
+      json.decode(responseBody) as List<dynamic>;
 
   return parsed
-      .map<BrcDay>((Map<String, dynamic> json) => BrcDay.fromJson(json))
+      .map<BrcDay>((dynamic json) => BrcDay.fromJson(json as Map<String, dynamic>))
       .toList();
 }
 
