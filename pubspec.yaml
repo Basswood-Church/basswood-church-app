@@ -29,6 +29,8 @@ dependencies:
   url_launcher: ^5.5.2
   flutter_launcher_icons: "^0.7.3"
   flutter_webview_plugin: ^0.3.11
+  package_info: ^0.4.0+13
+
 
 
 flutter_icons:

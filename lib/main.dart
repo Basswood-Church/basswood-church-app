@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'home_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(BasswoodChurchApp());
 
-class MyApp extends StatelessWidget {
+class BasswoodChurchApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
