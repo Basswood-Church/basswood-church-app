@@ -39,6 +39,17 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>audio</string>
+		</array>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>		
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Microphone is not used.</string>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
 		<key>NSAppTransportSecurity</key>
