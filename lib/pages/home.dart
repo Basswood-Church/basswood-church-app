@@ -1,4 +1,5 @@
 import 'package:BasswoodChurch/pages/giving_page.dart';
+import 'package:BasswoodChurch/util.dart';
 import 'package:audio_manager/audio_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class _HomeState extends State<Home> {
   List<Widget> _children = [];
 
   bool isPlaying = false;
+  bool showPlayer = false;
   Duration _duration;
   Duration _position;
   double _slider;
@@ -54,6 +56,7 @@ class _HomeState extends State<Home> {
       print("$events, $args");
       switch (events) {
         case AudioManagerEvents.start:
+          showPlayer = true;
           print(
               "start load data callback, curIndex is ${AudioManager.instance.curIndex}");
           _position = AudioManager.instance.position;
@@ -109,8 +112,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    bool isPlaying = AudioManager.instance.isPlaying;
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Basswood Church'),
@@ -123,8 +124,8 @@ class _HomeState extends State<Home> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  // onTabTapped(2);
                   setState(() {
+                    showPlayer = false;
                     AudioManager.instance.stop();
                   });
                 },
@@ -139,9 +140,9 @@ class _HomeState extends State<Home> {
                   child: _children[_currentIndex],
                   alignment: Alignment.center)),
           Container(
-            height: isPlaying ? 104 : 0,
+            height: showPlayer ? 104 : 0,
             width: double.maxFinite,
-            child: isPlaying ? bottomPanel() : Container(),
+            child: showPlayer ? bottomPanel() : Container(),
           )
         ]),
         bottomNavigationBar: BottomNavigationBar(
@@ -216,7 +217,12 @@ class _HomeState extends State<Home> {
                   Icons.stop,
                   color: Colors.black,
                 ),
-                onPressed: () => AudioManager.instance.stop()),
+                onPressed: () {
+                  setState(() {
+                    showPlayer = false;
+                    AudioManager.instance.stop();
+                  });
+                }),
           ],
         ),
       ),
@@ -333,8 +339,15 @@ class _HomeState extends State<Home> {
   }
 
   void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+    if (index == 1) {
+      launchURL('https://www.basswoodchurch.net/sermons');
+    } else if (index == 2) {
+      launchURL('https://www.basswoodchurch.net/give');
+    } else if (index == 3) {
+      launchURL('https://www.basswoodchurch.net/bulletin');
+    }
+    // setState(() {
+    //   _currentIndex = index;
+    // });
   }
 }

@@ -47,6 +47,14 @@ class _SermonsPageWidgetState extends State {
   @override
   void dispose() {
     // Every listener should be canceled, the same should be done with this stream.
+    _onDestroy.cancel();
+    _onUrlChanged.cancel();
+    _onStateChanged.cancel();
+    _onHttpError.cancel();
+    _onProgressChanged.cancel();
+    _onScrollXChanged.cancel();
+    _onScrollYChanged.cancel();
+
     flutterWebViewPlugin.dispose();
 
     super.dispose();
