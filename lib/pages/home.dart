@@ -16,6 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
+  int _numRefreshes = 0;
   List<Widget> _children = [];
 
   bool isPlaying = false;
@@ -24,7 +25,6 @@ class _HomeState extends State<Home> {
   Duration _position;
   double _slider;
   double _sliderVolume;
-  String _error;
   num curIndex = 0;
   PlayMode playMode = AudioManager.instance.playMode;
 
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
     // await session.configure(const AudioSessionConfiguration.speech());
 
     _children = [
-      initBibleReadingPlan(),
+      initBibleReadingPlan(_numRefreshes),
       SermonsPageWidget(),
       GivingPageWidget(),
       BulletinPageWidget(),
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
     AudioManager.instance.intercepter = true;
 
     // events callback
-    AudioManager.instance.onEvents((events, args) {
+    AudioManager.instance.onEvents((events, dynamic args) {
       print("$events, $args");
       switch (events) {
         case AudioManagerEvents.start:
@@ -66,7 +66,6 @@ class _HomeState extends State<Home> {
           break;
         case AudioManagerEvents.ready:
           print("ready to play");
-          _error = null;
           _sliderVolume = AudioManager.instance.volume;
           _position = AudioManager.instance.position;
           _duration = AudioManager.instance.duration;
@@ -94,7 +93,6 @@ class _HomeState extends State<Home> {
           // AudioManager.instance.updateLrc(args["position"].toString());
           break;
         case AudioManagerEvents.error:
-          _error = args;
           setState(() {});
           break;
         case AudioManagerEvents.ended:
@@ -115,29 +113,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Basswood Church'),
-          actions: <Widget>[
-            if (isPlaying)
-              IconButton(
-                iconSize: 24,
-                icon: Icon(
-                  Icons.stop,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  setState(() {
-                    showPlayer = false;
-                    AudioManager.instance.stop();
-                  });
-                },
-              )
-            else
-              Container()
-          ],
+          actions: _getAppBarActions(),
         ),
         body: Column(children: <Widget>[
           Expanded(
               child: Container(
-                  child: _children[_currentIndex],
+                  child: _currentIndex == 0 ? initBibleReadingPlan(_numRefreshes) : _children[_currentIndex],
                   alignment: Alignment.center)),
           Container(
             height: showPlayer ? 104 : 0,
@@ -349,5 +330,45 @@ class _HomeState extends State<Home> {
     // setState(() {
     //   _currentIndex = index;
     // });
+  }
+
+  List<Widget> _getAppBarActions() {
+    final List<Widget> retVal = <Widget>[];
+    if (_currentIndex == 0) {
+      if (isPlaying) {
+        retVal.add(
+            IconButton(
+              iconSize: 24,
+              icon: const Icon(
+                Icons.stop,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                setState(() {
+                  showPlayer = false;
+                  AudioManager.instance.stop();
+                });
+              },
+            )
+        );
+      }
+
+      retVal.add(
+          IconButton(
+            iconSize: 24,
+            icon: const Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              setState(() {
+                _numRefreshes++;
+              });
+            },
+          )
+      );
+    }
+
+    return retVal;
   }
 }

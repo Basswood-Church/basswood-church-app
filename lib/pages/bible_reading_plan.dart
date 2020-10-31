@@ -12,7 +12,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'reading_page.dart';
 
-Widget initBibleReadingPlan() {
+Widget initBibleReadingPlan(int numRefreshes) {
   return FutureBuilder<List<BrcDay>>(
       future: fetchBrcDays(http.Client()),
       builder: (BuildContext context, AsyncSnapshot<List<BrcDay>> snapshot) {
@@ -23,6 +23,7 @@ Widget initBibleReadingPlan() {
         return snapshot.hasData
             ? BrcDaysList(
                 brcDays: snapshot.data,
+                numRefreshes: numRefreshes,
               )
             : const Center(child: CircularProgressIndicator());
       });
@@ -62,9 +63,10 @@ class BrcDay {
 }
 
 class BrcDaysList extends StatefulWidget {
-  const BrcDaysList({Key key, this.brcDays})
+  const BrcDaysList({Key key, this.brcDays, this.numRefreshes})
       : super(key: key);
   final List<BrcDay> brcDays;
+  final int numRefreshes;
 
   @override
   _BrcDaysListState createState() =>

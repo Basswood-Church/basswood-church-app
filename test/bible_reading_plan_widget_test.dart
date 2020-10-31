@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('Bible reading plan opens with loading indicator', (WidgetTester tester) async {
     // Build our widget and trigger a frame.
-    await tester.pumpWidget(initBibleReadingPlan());
+    await tester.pumpWidget(initBibleReadingPlan(0));
 
     // Verify that our widget starts with a loading indicator.
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
