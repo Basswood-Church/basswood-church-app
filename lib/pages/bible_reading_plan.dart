@@ -70,13 +70,14 @@ class BrcDaysList extends StatefulWidget {
 
   @override
   _BrcDaysListState createState() =>
-      _BrcDaysListState(brcDays: brcDays);
+      _BrcDaysListState(brcDays: brcDays, numRefreshes: numRefreshes);
 }
 
 class _BrcDaysListState extends State<BrcDaysList> {
-  _BrcDaysListState({this.brcDays});
+  _BrcDaysListState({this.brcDays, this.numRefreshes});
 
   final List<BrcDay> brcDays;
+  final int numRefreshes;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
@@ -85,6 +86,19 @@ class _BrcDaysListState extends State<BrcDaysList> {
   void initState() {
     super.initState();
 
+    _jumpToToday();
+  }
+
+  @override
+  void didUpdateWidget(covariant BrcDaysList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.numRefreshes != numRefreshes) {
+      _jumpToToday();
+    }
+  }
+
+  void _jumpToToday() {
     final DateTime now = DateTime.now();
     final DateTime today = DateTime(now.year, now.month, now.day);
 
