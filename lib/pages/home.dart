@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  int _numRefreshes = 0;
+  int _numRefocuses = 0;
   List<Widget> _children = [];
 
   bool isPlaying = false;
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
     // await session.configure(const AudioSessionConfiguration.speech());
 
     _children = [
-      initBibleReadingPlan(_numRefreshes),
+      null,
       SermonsPageWidget(),
       GivingPageWidget(),
       BulletinPageWidget(),
@@ -118,7 +118,7 @@ class _HomeState extends State<Home> {
         body: Column(children: <Widget>[
           Expanded(
               child: Container(
-                  child: _currentIndex == 0 ? initBibleReadingPlan(_numRefreshes) : _children[_currentIndex],
+                  child: _currentIndex == 0 ? BibleReadingPlan(numRefocuses: _numRefocuses) : _children[_currentIndex],
                   alignment: Alignment.center)),
           Container(
             height: showPlayer ? 104 : 0,
@@ -362,7 +362,7 @@ class _HomeState extends State<Home> {
             ),
             onPressed: () {
               setState(() {
-                _numRefreshes++;
+                _numRefocuses++;
               });
             },
           )
