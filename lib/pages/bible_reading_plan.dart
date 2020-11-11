@@ -12,9 +12,14 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'reading_page.dart';
 
-Widget initBibleReadingPlan() {
-  return FutureBuilder<List<BrcDay>>(
-      future: fetchBrcDays(http.Client()),
+class BibleReadingPlan extends StatelessWidget {
+  const BibleReadingPlan({this.numRefocuses});
+
+  final int numRefocuses;
+
+  @override
+  Widget build(BuildContext context) => FutureBuilder<List<BrcDay>>(
+      future: _brcDaysFuture,
       builder: (BuildContext context, AsyncSnapshot<List<BrcDay>> snapshot) {
         if (snapshot.hasError) {
           print(snapshot.error);
@@ -23,12 +28,15 @@ Widget initBibleReadingPlan() {
         return snapshot.hasData
             ? BrcDaysList(
                 brcDays: snapshot.data,
+                numRefocuses: numRefocuses,
               )
             : const Center(child: CircularProgressIndicator());
       });
 }
 
-Future<List<BrcDay>> fetchBrcDays(http.Client client) async {
+Future<List<BrcDay>> _brcDaysFuture = _fetchBrcDays(http.Client());
+
+Future<List<BrcDay>> _fetchBrcDays(http.Client client) async {
   final Response response =
       await client.get('https://www.basswoodchurch.net/app/brc.json');
 
@@ -62,9 +70,10 @@ class BrcDay {
 }
 
 class BrcDaysList extends StatefulWidget {
-  const BrcDaysList({Key key, this.brcDays})
+  const BrcDaysList({Key key, this.brcDays, this.numRefocuses})
       : super(key: key);
   final List<BrcDay> brcDays;
+  final int numRefocuses;
 
   @override
   _BrcDaysListState createState() =>
@@ -83,6 +92,19 @@ class _BrcDaysListState extends State<BrcDaysList> {
   void initState() {
     super.initState();
 
+    _jumpToToday();
+  }
+
+  @override
+  void didUpdateWidget(covariant BrcDaysList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.numRefocuses != widget.numRefocuses) {
+      _jumpToToday();
+    }
+  }
+
+  void _jumpToToday() {
     final DateTime now = DateTime.now();
     final DateTime today = DateTime(now.year, now.month, now.day);
 
@@ -128,9 +150,12 @@ class _BrcDaysListState extends State<BrcDaysList> {
                         context, ReadingPage(brcDays[index].passage));
                   },
                 ),
-                ListenButtonWidget(title: brcDays[index].passage.toString(), description: 'Welcome to the Feast', url:'https://www.basswoodchurch.net/' +
-                                Uri.encodeComponent(
-                                    brcDays[index].passage.toString() + '.mp3')),
+                ListenButtonWidget(
+                    title: brcDays[index].passage.toString(),
+                    description: 'Welcome to the Feast',
+                    url: 'https://www.basswoodchurch.net/' +
+                        Uri.encodeComponent(
+                            brcDays[index].passage.toString() + '.mp3')),
               ],
             ),
           ],
