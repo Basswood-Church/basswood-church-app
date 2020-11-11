@@ -189,10 +189,16 @@ class _HomeState extends State<Home> {
             IconButton(
                 iconSize: 36,
                 icon: Icon(
-                  Icons.skip_previous,
+                  Icons.replay_10,
                   color: Colors.black,
                 ),
-                onPressed: () => AudioManager.instance.previous()),
+                onPressed: (){
+                  _duration = AudioManager.instance.duration;
+                  Duration msec = Duration(
+                          milliseconds:
+                              (_duration.inSeconds - 10).round());
+                      AudioManager.instance.seekTo(msec);
+                }),
             IconButton(
               onPressed: () async {
                 bool playing = await AudioManager.instance.playOrPause();
@@ -208,10 +214,16 @@ class _HomeState extends State<Home> {
             IconButton(
                 iconSize: 36,
                 icon: Icon(
-                  Icons.skip_next,
+                  Icons.forward_10,
                   color: Colors.black,
                 ),
-                onPressed: () => AudioManager.instance.next()),
+                onPressed: (){
+                  _position = AudioManager.instance.position;
+                  Duration msec = Duration(
+                          milliseconds:
+                              (_position.inSeconds + 10).round());
+                      AudioManager.instance.seekTo(msec);
+                }),
             IconButton(
                 icon: Icon(
                   Icons.stop,
@@ -340,14 +352,11 @@ class _HomeState extends State<Home> {
 
   void onTabTapped(int index) {
     if (index == 1) {
-      launchURL('https://www.basswoodchurch.net/sermons');
+      launchURL('https://www.basswoodchurch.net/sermons', true);
     } else if (index == 2) {
-      launchURL('https://www.basswoodchurch.net/give');
+      launchURL('https://www.basswoodchurch.net/give', false);
     } else if (index == 3) {
-      launchURL('https://www.basswoodchurch.net/bulletin');
+      launchURL('https://www.basswoodchurch.net/bulletin', true);
     }
-    // setState(() {
-    //   _currentIndex = index;
-    // });
   }
 }
