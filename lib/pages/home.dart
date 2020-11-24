@@ -357,7 +357,7 @@ class _HomeState extends State<Home> {
           IconButton(
             iconSize: 24,
             icon: const Icon(
-              Icons.refresh,
+              Icons.today,
               color: Colors.white,
             ),
             onPressed: () {
