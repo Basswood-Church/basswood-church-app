@@ -8,7 +8,7 @@ class ReadingPage extends MaterialPageRoute<void> {
             appBar: AppBar(actions: const <Widget>[], title: Text(passage)),
             body: WebviewScaffold(
               hidden: true,
-              url: 'https://basswoodchurch.net/app/read.php?q=' +
+              url: 'https://ctk-app.jcb3.de/read.php?q=' +
                   Uri.encodeComponent(passage),
             ),
           );

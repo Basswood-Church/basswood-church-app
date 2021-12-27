@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:BasswoodChurch/widgets/listen_button_widget.dart';
+import '../widgets/listen_button_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -38,7 +38,7 @@ Future<List<BrcDay>> _brcDaysFuture = _fetchBrcDays(http.Client());
 
 Future<List<BrcDay>> _fetchBrcDays(http.Client client) async {
   final Response response =
-      await client.get('https://www.basswoodchurch.net/app/brc.json');
+      await client.get('https://ctk-app.jcb3.de/brc.json');
 
   // Use the compute function to run parseBrcDays in a separate isolate
   return compute(parseBrcDays, response.body);
@@ -76,8 +76,7 @@ class BrcDaysList extends StatefulWidget {
   final int numRefocuses;
 
   @override
-  _BrcDaysListState createState() =>
-      _BrcDaysListState(brcDays: brcDays);
+  _BrcDaysListState createState() => _BrcDaysListState(brcDays: brcDays);
 }
 
 class _BrcDaysListState extends State<BrcDaysList> {
@@ -133,7 +132,8 @@ class _BrcDaysListState extends State<BrcDaysList> {
           children: <Widget>[
             ListTile(
               leading: Icon(
-                  (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book),
+                (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book,
+              ),
               title: Text(DateFormat('EEEE, MMMM d, y')
                   .format(brcDays[index].date)
                   .toString()),
@@ -142,7 +142,7 @@ class _BrcDaysListState extends State<BrcDaysList> {
             ButtonBar(
               children: <Widget>[
                 FlatButton.icon(
-                  color: Colors.blueGrey,
+                  color: Colors.blue,
                   icon: const Icon(Icons.remove_red_eye),
                   label: const Text('READ'),
                   onPressed: () {
@@ -153,9 +153,9 @@ class _BrcDaysListState extends State<BrcDaysList> {
                 ListenButtonWidget(
                     title: brcDays[index].passage.toString(),
                     description: 'Welcome to the Feast',
-                    url: 'https://www.basswoodchurch.net/' +
+                    url: 'https://ctk-app.jcb3.de/listen/' +
                         Uri.encodeComponent(
-                            brcDays[index].passage.toString() + '.mp3')),
+                            brcDays[index].passage.toString().trim() + '.mp3')),
               ],
             ),
           ],

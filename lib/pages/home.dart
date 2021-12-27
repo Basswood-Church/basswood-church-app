@@ -1,5 +1,5 @@
-import 'package:BasswoodChurch/pages/giving_page.dart';
-import 'package:BasswoodChurch/util.dart';
+import '../util.dart';
+import 'giving_page.dart';
 import 'package:audio_manager/audio_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -112,13 +112,15 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Basswood Church'),
+          title: const Text('Christ the King Church'),
           actions: _getAppBarActions(),
         ),
         body: Column(children: <Widget>[
           Expanded(
               child: Container(
-                  child: _currentIndex == 0 ? BibleReadingPlan(numRefocuses: _numRefocuses) : _children[_currentIndex],
+                  child: _currentIndex == 0
+                      ? BibleReadingPlan(numRefocuses: _numRefocuses)
+                      : _children[_currentIndex],
                   alignment: Alignment.center)),
           Container(
             height: showPlayer ? 104 : 0,
@@ -139,14 +141,14 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.headset),
                 title: Text('Sermons'),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.attach_money),
-                title: Text('Giving'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.picture_as_pdf),
-                title: Text('Bulletin'),
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.attach_money),
+              //   title: Text('Giving'),
+              // ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.picture_as_pdf),
+              //   title: Text('Bulletin'),
+              // ),
             ]));
   }
 
@@ -320,8 +322,12 @@ class _HomeState extends State<Home> {
   }
 
   void onTabTapped(int index) {
-    if (index == 1) {
-      launchURL('https://www.basswoodchurch.net/sermons');
+    if (index == 0) {
+      setState(() {
+        _currentIndex = index;
+      });
+    } else if (index == 1) {
+      launchURL('https://ctkchurch.info/sermons');
     } else if (index == 2) {
       launchURL('https://www.basswoodchurch.net/give');
     } else if (index == 3) {
@@ -336,37 +342,33 @@ class _HomeState extends State<Home> {
     final List<Widget> retVal = <Widget>[];
     if (_currentIndex == 0) {
       if (isPlaying) {
-        retVal.add(
-            IconButton(
-              iconSize: 24,
-              icon: const Icon(
-                Icons.stop,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                setState(() {
-                  showPlayer = false;
-                  AudioManager.instance.stop();
-                });
-              },
-            )
-        );
+        retVal.add(IconButton(
+          iconSize: 24,
+          icon: const Icon(
+            Icons.stop,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            setState(() {
+              showPlayer = false;
+              AudioManager.instance.stop();
+            });
+          },
+        ));
       }
 
-      retVal.add(
-          IconButton(
-            iconSize: 24,
-            icon: const Icon(
-              Icons.today,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              setState(() {
-                _numRefocuses++;
-              });
-            },
-          )
-      );
+      retVal.add(IconButton(
+        iconSize: 24,
+        icon: const Icon(
+          Icons.today,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          setState(() {
+            _numRefocuses++;
+          });
+        },
+      ));
     }
 
     return retVal;

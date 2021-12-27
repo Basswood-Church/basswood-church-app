@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'pages/home.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -11,10 +10,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
-          accentIconTheme:
-              Theme.of(context).accentIconTheme.copyWith(color: Colors.white),
-          accentColor: Colors.blueAccent,
-          primaryColor: Colors.blueGrey,
           primaryIconTheme:
               Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
           primaryTextTheme: Theme.of(context)

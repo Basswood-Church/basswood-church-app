@@ -8,8 +8,7 @@ class ListenButtonWidget extends StatefulWidget {
   String url;
 
   @override
-  State<StatefulWidget> createState() =>
-      _ListenButtonWidgetState();
+  State<StatefulWidget> createState() => _ListenButtonWidgetState();
 }
 
 class _ListenButtonWidgetState extends State<ListenButtonWidget> {
@@ -17,26 +16,27 @@ class _ListenButtonWidgetState extends State<ListenButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[FlatButton.icon(
-        color: Colors.blueGrey,
-        icon: const Icon(Icons.headset),
-        label: const Text('LISTEN'),
-        onPressed: () {
-          if (AudioManager.instance.isPlaying) {
-            AudioManager.instance.stop();
-          } else {
-            AudioManager.instance
-                .start(widget.url, widget.title,
-                    desc: widget.description,
-                    cover:
-                        'https://www.basswoodchurch.net/wp-content/uploads/powerpress/BasswoodLogo-459.jpg')
-                .then((err) {
-              print('Error' + err.toString());
+    return Column(children: <Widget>[
+      FlatButton.icon(
+          color: Colors.blue,
+          icon: const Icon(Icons.headset),
+          label: const Text('LISTEN'),
+          onPressed: () {
+            if (AudioManager.instance.isPlaying) {
+              AudioManager.instance.stop();
+            } else {
+              AudioManager.instance
+                  .start(widget.url, widget.title,
+                      desc: widget.description,
+                      cover: 'https://ctk-app.jcb3.de/icon.jpg')
+                  .then((err) {
+                print('Error' + err.toString());
+              });
+            }
+            setState(() {
+              playing = !playing;
             });
-          }
-          setState(() {
-            playing = !playing;
-          });
-        })]);
+          })
+    ]);
   }
 }

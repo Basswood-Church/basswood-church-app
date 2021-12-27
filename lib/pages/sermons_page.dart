@@ -39,9 +39,7 @@ class _SermonsPageWidgetState extends State {
   @override
   Widget build(BuildContext context) {
     return const WebviewScaffold(
-        url: 'https://www.basswoodchurch.net/sermons',
-        withZoom: true,
-        hidden: true);
+        url: 'https://ctkchurch.info/sermons', withZoom: true, hidden: true);
   }
 
   @override

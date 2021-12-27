@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:BasswoodChurch/pages/bible_reading_plan.dart';
+import '../lib/pages/bible_reading_plan.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
