@@ -28,9 +28,9 @@ dependencies:
   scrollable_positioned_list: ^0.1.7
   url_launcher: ^5.5.2
   flutter_launcher_icons: "^0.7.3"
-  flutter_webview_plugin: ^0.3.11
-  # flutter_webview_plugin:
-  #   git: https://github.com/nuc134r/flutter_webview_plugin.git
+  #flutter_webview_plugin: ^0.3.11
+  flutter_webview_plugin:
+    git: https://github.com/nuc134r/flutter_webview_plugin.git
   path_provider:
   audio_manager: ^0.5.5+3
   google_fonts: ^1.1.0
