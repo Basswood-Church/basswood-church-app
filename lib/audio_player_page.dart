@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'utils/color_scheme.dart';
 
 class AudioPlayerPage extends MaterialPageRoute<void> {
   AudioPlayerPage(String passage)

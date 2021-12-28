@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'bible_reading_plan.dart';
 import 'bulletin_page.dart';
 import 'sermons_page.dart';
+import '../utils/color_scheme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -112,8 +114,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Christ the King Church'),
+          title: Text(
+            'Christ the King Church',
+            style: GoogleFonts.barlow(
+                color: GREY3, fontSize: 22, fontWeight: FontWeight.w500),
+          ),
           actions: _getAppBarActions(),
+          backgroundColor: MAIN1,
         ),
         body: Column(children: <Widget>[
           Expanded(
@@ -132,14 +139,22 @@ class _HomeState extends State<Home> {
             type: BottomNavigationBarType.fixed,
             onTap: onTabTapped,
             currentIndex: _currentIndex,
+            backgroundColor: MAIN1,
+            selectedItemColor: SECOND1,
+            unselectedItemColor: SECOND2,
+            unselectedLabelStyle: GoogleFonts.josefinSans(
+                color: GREY3, fontWeight: FontWeight.w500),
+            selectedLabelStyle: GoogleFonts.josefinSans(
+                color: GREY3, fontWeight: FontWeight.w500),
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.book),
-                title: Text('Reading'),
+                backgroundColor: MAIN1,
+                label: 'Reading',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.headset),
-                title: Text('Sermons'),
+                label: 'Sermons',
               ),
               // BottomNavigationBarItem(
               //   icon: Icon(Icons.attach_money),
@@ -346,7 +361,7 @@ class _HomeState extends State<Home> {
           iconSize: 24,
           icon: const Icon(
             Icons.stop,
-            color: Colors.white,
+            color: GREY3,
           ),
           onPressed: () {
             setState(() {
@@ -361,7 +376,7 @@ class _HomeState extends State<Home> {
         iconSize: 24,
         icon: const Icon(
           Icons.today,
-          color: Colors.white,
+          color: GREY3,
         ),
         onPressed: () {
           setState(() {

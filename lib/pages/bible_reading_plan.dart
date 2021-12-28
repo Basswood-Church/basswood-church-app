@@ -9,6 +9,10 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../utils/color_scheme.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+import '../widgets/green_button.dart';
 
 import 'reading_page.dart';
 
@@ -126,39 +130,72 @@ class _BrcDaysListState extends State<BrcDaysList> {
 
   Widget buildBrcDay(BuildContext context, int index) {
     return Container(
+      color: MAIN1,
       child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(
-                (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book,
-              ),
-              title: Text(DateFormat('EEEE, MMMM d, y')
-                  .format(brcDays[index].date)
-                  .toString()),
-              subtitle: Text(brcDays[index].friendlyPassage),
-            ),
-            ButtonBar(
-              children: <Widget>[
-                FlatButton.icon(
-                  color: Colors.blue,
-                  icon: const Icon(Icons.remove_red_eye),
-                  label: const Text('READ'),
-                  onPressed: () {
-                    Navigator.push(
-                        context, ReadingPage(brcDays[index].passage));
-                  },
+        color: MAIN1,
+        child: Container(
+          height: 100.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Center(
+                  child: Icon(
+                    (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book,
+                    color: GREY3,
+                  ),
                 ),
-                ListenButtonWidget(
-                    title: brcDays[index].passage.toString(),
-                    description: 'Welcome to the Feast',
-                    url: 'https://ctk-app.jcb3.de/listen/' +
-                        Uri.encodeComponent(
-                            brcDays[index].passage.toString().trim() + '.mp3')),
-              ],
-            ),
-          ],
+              ),
+              Expanded(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      DateFormat('EEEE, MMMM d, y')
+                          .format(brcDays[index].date)
+                          .toString(),
+                      maxLines: 1,
+                      style: GoogleFonts.nunito(
+                          color: BODY2,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold)),
+                  Text(brcDays[index].friendlyPassage,
+                      maxLines: 1,
+                      style: GoogleFonts.nunito(
+                          color: GREY3,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w400)),
+                ],
+              )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GreenButton(
+                        icon: Icons.remove_red_eye,
+                        onPressed: () {
+                          Navigator.push(
+                              context, ReadingPage(brcDays[index].passage));
+                        },
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListenButtonWidget(
+                          title: brcDays[index].passage.toString(),
+                          description: 'Welcome to the Feast',
+                          url: 'https://ctk-app.jcb3.de/listen/' +
+                              Uri.encodeComponent(
+                                  brcDays[index].passage.toString().trim() +
+                                      '.mp3'))),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
