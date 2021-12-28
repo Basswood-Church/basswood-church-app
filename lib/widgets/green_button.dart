@@ -4,12 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class GreenButton extends StatelessWidget {
   const GreenButton({
+    this.text,
     this.onPressed,
     this.icon,
   });
-
-  final VoidCallback onPressed;
   final IconData icon;
+  final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,13 @@ class GreenButton extends StatelessWidget {
               size: 20,
               color: BODY3,
             ),
+            if (text.isNotEmpty) const SizedBox(width: 10),
+            if (text.isNotEmpty)
+              Text(
+                text,
+                style: GoogleFonts.barlow(
+                    color: BODY3, fontSize: 21, fontWeight: FontWeight.bold),
+              ),
           ],
         ),
       ),

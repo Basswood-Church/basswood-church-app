@@ -139,14 +139,8 @@ class _BrcDaysListState extends State<BrcDaysList> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Center(
-                  child: Icon(
-                    (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book,
-                    color: GREY3,
-                  ),
-                ),
+              const SizedBox(
+                width: 11.0,
               ),
               Expanded(
                   child: Column(
@@ -160,13 +154,13 @@ class _BrcDaysListState extends State<BrcDaysList> {
                       maxLines: 1,
                       style: GoogleFonts.nunito(
                           color: BODY2,
-                          fontSize: 18.0,
+                          fontSize: 19.0,
                           fontWeight: FontWeight.bold)),
                   Text(brcDays[index].friendlyPassage,
                       maxLines: 1,
                       style: GoogleFonts.nunito(
                           color: GREY3,
-                          fontSize: 16.0,
+                          fontSize: 17.0,
                           fontWeight: FontWeight.w400)),
                 ],
               )),
@@ -175,8 +169,10 @@ class _BrcDaysListState extends State<BrcDaysList> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10.0),
                       child: GreenButton(
+                        text: '',
                         icon: Icons.remove_red_eye,
                         onPressed: () {
                           Navigator.push(
@@ -184,7 +180,8 @@ class _BrcDaysListState extends State<BrcDaysList> {
                         },
                       )),
                   Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10.0),
                       child: ListenButtonWidget(
                           title: brcDays[index].passage.toString(),
                           description: 'Welcome to the Feast',

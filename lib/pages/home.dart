@@ -135,36 +135,45 @@ class _HomeState extends State<Home> {
             child: showPlayer ? bottomPanel() : Container(),
           )
         ]),
-        bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            onTap: onTabTapped,
-            currentIndex: _currentIndex,
-            backgroundColor: MAIN1,
-            selectedItemColor: SECOND1,
-            unselectedItemColor: SECOND2,
-            unselectedLabelStyle: GoogleFonts.josefinSans(
-                color: GREY3, fontWeight: FontWeight.w500),
-            selectedLabelStyle: GoogleFonts.josefinSans(
-                color: GREY3, fontWeight: FontWeight.w500),
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.book),
+        bottomNavigationBar: Container(
+            decoration: const BoxDecoration(
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black,
+                  blurRadius: 0.02,
+                ),
+              ],
+            ),
+            child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                onTap: onTabTapped,
+                currentIndex: _currentIndex,
                 backgroundColor: MAIN1,
-                label: 'Reading',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.headset),
-                label: 'Sermons',
-              ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.attach_money),
-              //   title: Text('Giving'),
-              // ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.picture_as_pdf),
-              //   title: Text('Bulletin'),
-              // ),
-            ]));
+                selectedItemColor: SECOND1,
+                unselectedItemColor: SECOND2,
+                unselectedLabelStyle: GoogleFonts.josefinSans(
+                    color: GREY3, fontWeight: FontWeight.w500),
+                selectedLabelStyle: GoogleFonts.josefinSans(
+                    color: GREY3, fontWeight: FontWeight.w500),
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.book),
+                    backgroundColor: MAIN1,
+                    label: 'Reading',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.headset),
+                    label: 'Sermons',
+                  ),
+                  // BottomNavigationBarItem(
+                  //   icon: Icon(Icons.attach_money),
+                  //   title: Text('Giving'),
+                  // ),
+                  // BottomNavigationBarItem(
+                  //   icon: Icon(Icons.picture_as_pdf),
+                  //   title: Text('Bulletin'),
+                  // ),
+                ])));
   }
 
   Widget bottomPanel() {

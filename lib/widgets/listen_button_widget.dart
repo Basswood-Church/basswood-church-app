@@ -19,6 +19,7 @@ class _ListenButtonWidgetState extends State<ListenButtonWidget> {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       GreenButton(
+        text: '',
         icon: Icons.headset,
         onPressed: () {
           if (AudioManager.instance.isPlaying) {
