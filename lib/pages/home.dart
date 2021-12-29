@@ -177,8 +177,9 @@ class _HomeState extends State<Home> {
   }
 
   Widget bottomPanel() {
-    return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 1),
+    return Container(
+        decoration: new BoxDecoration(color: GREY3),
+        padding: EdgeInsets.symmetric(vertical: 1),
         child: Column(children: <Widget>[
           //////////
           Container(
