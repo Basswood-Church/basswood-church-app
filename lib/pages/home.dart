@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
                       : _children[_currentIndex],
                   alignment: Alignment.center)),
           Container(
-            height: showPlayer ? 104 : 0,
+            height: showPlayer ? 120 : 0,
             width: double.maxFinite,
             child: showPlayer ? bottomPanel() : Container(),
           )
@@ -177,63 +177,69 @@ class _HomeState extends State<Home> {
   }
 
   Widget bottomPanel() {
-    return Column(children: <Widget>[
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: songProgress(context),
-      ),
-      Container(
-        padding: EdgeInsets.symmetric(vertical: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            IconButton(
-                icon: getPlayModeIcon(playMode),
-                onPressed: () {
-                  playMode = AudioManager.instance.nextMode();
-                  setState(() {});
-                }),
-            IconButton(
-                iconSize: 36,
-                icon: Icon(
-                  Icons.skip_previous,
-                  color: Colors.black,
+    return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 1),
+        child: Column(children: <Widget>[
+          //////////
+          Container(
+              color: MAIN1,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+                child: songProgress(context),
+              )),
+          Container(
+            decoration: new BoxDecoration(color: MAIN1),
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                IconButton(
+                    icon: getPlayModeIcon(playMode),
+                    onPressed: () {
+                      playMode = AudioManager.instance.nextMode();
+                      setState(() {});
+                    }),
+                IconButton(
+                    iconSize: 36,
+                    icon: Icon(
+                      Icons.skip_previous,
+                      color: GREY3,
+                    ),
+                    onPressed: () => AudioManager.instance.previous()),
+                IconButton(
+                  onPressed: () async {
+                    bool playing = await AudioManager.instance.playOrPause();
+                    print("await -- $playing");
+                  },
+                  padding: const EdgeInsets.all(0.0),
+                  icon: Icon(
+                    isPlaying ? Icons.pause : Icons.play_arrow,
+                    size: 48.0,
+                    color: GREY3,
+                  ),
                 ),
-                onPressed: () => AudioManager.instance.previous()),
-            IconButton(
-              onPressed: () async {
-                bool playing = await AudioManager.instance.playOrPause();
-                print("await -- $playing");
-              },
-              padding: const EdgeInsets.all(0.0),
-              icon: Icon(
-                isPlaying ? Icons.pause : Icons.play_arrow,
-                size: 48.0,
-                color: Colors.black,
-              ),
+                IconButton(
+                    iconSize: 36,
+                    icon: Icon(
+                      Icons.skip_next,
+                      color: GREY3,
+                    ),
+                    onPressed: () => AudioManager.instance.next()),
+                IconButton(
+                    icon: Icon(
+                      Icons.stop,
+                      color: GREY3,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        showPlayer = false;
+                        AudioManager.instance.stop();
+                      });
+                    }),
+              ],
             ),
-            IconButton(
-                iconSize: 36,
-                icon: Icon(
-                  Icons.skip_next,
-                  color: Colors.black,
-                ),
-                onPressed: () => AudioManager.instance.next()),
-            IconButton(
-                icon: Icon(
-                  Icons.stop,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  setState(() {
-                    showPlayer = false;
-                    AudioManager.instance.stop();
-                  });
-                }),
-          ],
-        ),
-      ),
-    ]);
+          ),
+        ]));
   }
 
   Widget getPlayModeIcon(PlayMode playMode) {
@@ -241,72 +247,74 @@ class _HomeState extends State<Home> {
       case PlayMode.sequence:
         return Icon(
           Icons.repeat,
-          color: Colors.black,
+          color: GREY3,
         );
       case PlayMode.shuffle:
         return Icon(
           Icons.shuffle,
-          color: Colors.black,
+          color: GREY3,
         );
       case PlayMode.single:
         return Icon(
           Icons.repeat_one,
-          color: Colors.black,
+          color: GREY3,
         );
     }
     return Container();
   }
 
   Widget songProgress(BuildContext context) {
-    var style = TextStyle(color: Colors.black);
-    return Row(
-      children: <Widget>[
-        Text(
-          _formatDuration(_position),
-          style: style,
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                  trackHeight: 2,
-                  thumbColor: Colors.blueAccent,
-                  overlayColor: Colors.blue,
-                  thumbShape: RoundSliderThumbShape(
-                    disabledThumbRadius: 5,
-                    enabledThumbRadius: 5,
-                  ),
-                  overlayShape: RoundSliderOverlayShape(
-                    overlayRadius: 10,
-                  ),
-                  activeTrackColor: Colors.blueAccent,
-                  inactiveTrackColor: Colors.grey,
-                ),
-                child: Slider(
-                  value: _slider ?? 0,
-                  onChanged: (value) {
-                    setState(() {
-                      _slider = value;
-                    });
-                  },
-                  onChangeEnd: (value) {
-                    if (_duration != null) {
-                      Duration msec = Duration(
-                          milliseconds:
-                              (_duration.inMilliseconds * value).round());
-                      AudioManager.instance.seekTo(msec);
-                    }
-                  },
-                )),
-          ),
-        ),
-        Text(
-          _formatDuration(_duration),
-          style: style,
-        ),
-      ],
-    );
+    var style = TextStyle(color: GREY3);
+    return Container(
+        color: MAIN1,
+        child: Row(
+          children: <Widget>[
+            Text(
+              _formatDuration(_position),
+              style: style,
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      trackHeight: 2,
+                      thumbColor: SECOND1,
+                      overlayColor: SECOND1,
+                      thumbShape: RoundSliderThumbShape(
+                        disabledThumbRadius: 5,
+                        enabledThumbRadius: 5,
+                      ),
+                      overlayShape: RoundSliderOverlayShape(
+                        overlayRadius: 10,
+                      ),
+                      activeTrackColor: SECOND1,
+                      inactiveTrackColor: GREY3,
+                    ),
+                    child: Slider(
+                      value: _slider ?? 0,
+                      onChanged: (value) {
+                        setState(() {
+                          _slider = value;
+                        });
+                      },
+                      onChangeEnd: (value) {
+                        if (_duration != null) {
+                          Duration msec = Duration(
+                              milliseconds:
+                                  (_duration.inMilliseconds * value).round());
+                          AudioManager.instance.seekTo(msec);
+                        }
+                      },
+                    )),
+              ),
+            ),
+            Text(
+              _formatDuration(_duration),
+              style: style,
+            ),
+          ],
+        ));
   }
 
   String _formatDuration(Duration d) {
