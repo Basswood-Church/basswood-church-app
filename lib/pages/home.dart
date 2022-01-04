@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'bible_reading_plan.dart';
 import 'bulletin_page.dart';
-import 'sermons_page.dart';
+import 'sermon/sermon_list.dart';
 import '../utils/color_scheme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,7 +19,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   int _numRefocuses = 0;
-  List<Widget> _children = [];
+  List<Widget> tabScreens = [];
 
   bool isPlaying = false;
   bool showPlayer = false;
@@ -42,9 +42,9 @@ class _HomeState extends State<Home> {
     // final AudioSession session = await AudioSession.instance;
     // await session.configure(const AudioSessionConfiguration.speech());
 
-    _children = [
+    tabScreens = [
       null,
-      SermonsPageWidget(),
+      const SermonList(),
       GivingPageWidget(),
       BulletinPageWidget(),
     ];
@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Christ the King Church',
+            _currentIndex == 0 ? 'Christ the King Church' : 'Sermons',
             style: GoogleFonts.barlow(
                 color: GREY3, fontSize: 22, fontWeight: FontWeight.w500),
           ),
@@ -127,7 +127,7 @@ class _HomeState extends State<Home> {
               child: Container(
                   child: _currentIndex == 0
                       ? BibleReadingPlan(numRefocuses: _numRefocuses)
-                      : _children[_currentIndex],
+                      : tabScreens[_currentIndex],
                   alignment: Alignment.center)),
           Container(
             height: showPlayer ? 120 : 0,
@@ -357,10 +357,16 @@ class _HomeState extends State<Home> {
   void onTabTapped(int index) {
     if (index == 0) {
       setState(() {
+        showPlayer = false;
+        AudioManager.instance.stop();
         _currentIndex = index;
       });
     } else if (index == 1) {
-      launchURL('https://ctkchurch.info/sermons');
+      setState(() {
+        showPlayer = false;
+        AudioManager.instance.stop();
+        _currentIndex = index;
+      });
     } else if (index == 2) {
       launchURL('https://www.basswoodchurch.net/give');
     } else if (index == 3) {

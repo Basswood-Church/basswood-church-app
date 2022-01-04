@@ -4,6 +4,7 @@ import 'utils/color_scheme.dart';
 
 void main() => runApp(MyApp());
 
+/// flutter run --no-sound-null-safety
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
