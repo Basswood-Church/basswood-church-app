@@ -19,8 +19,9 @@ class SermonService {
           .map((item) => SermonEntity(
                 title: item.title,
                 author: item.author,
-                time: DateFormat('HH:MM').format(item.pubDate).toString(),
-                date: DateFormat('EEEE, MMMM d   ')
+                time: DateFormat('hh:mm a').format(item.pubDate).toString(),
+                image: item.itunes.image.href,
+                date: DateFormat('EEEE, MMMM d, y')
                     .format(item.pubDate)
                     .toString(),
                 link: item.enclosure.url,

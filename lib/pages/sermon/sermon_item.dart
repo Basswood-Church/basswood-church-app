@@ -25,8 +25,16 @@ class SermonItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const SizedBox(
-                width: 11.0,
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Image.network(
+                    sermon.image,
+                    height: 50,
+                  ),
+                ),
               ),
               Expanded(
                   child: Column(
@@ -39,29 +47,30 @@ class SermonItem extends StatelessWidget {
                           color: BODY2,
                           fontSize: 19.0,
                           fontWeight: FontWeight.bold)),
-                  Text(sermon.author,
+                  Text(sermon.date,
                       maxLines: 1,
                       style: GoogleFonts.nunito(
                           color: GREY3,
                           fontSize: 17.0,
                           fontWeight: FontWeight.w400)),
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(sermon.date,
-                            maxLines: 1,
-                            style: GoogleFonts.nunito(
-                                color: GREY3,
-                                fontSize: 17.0,
-                                fontWeight: FontWeight.w400)),
-                        Text(' ' + sermon.time,
-                            maxLines: 1,
-                            style: GoogleFonts.nunito(
-                                color: GREY3,
-                                fontSize: 17.0,
-                                fontWeight: FontWeight.w400)),
-                      ]),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(sermon.time,
+                          maxLines: 1,
+                          style: GoogleFonts.nunito(
+                              color: GREY3,
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w400)),
+                      Text('   ' + sermon.author,
+                          maxLines: 1,
+                          style: GoogleFonts.nunito(
+                              color: GREY3,
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w400)),
+                    ],
+                  ),
                 ],
               )),
               Column(
