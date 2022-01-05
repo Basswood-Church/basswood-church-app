@@ -57,13 +57,7 @@ class SermonItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(sermon.time,
-                          maxLines: 1,
-                          style: GoogleFonts.nunito(
-                              color: GREY3,
-                              fontSize: 17.0,
-                              fontWeight: FontWeight.w400)),
-                      Text('   ' + sermon.author,
+                      Text(sermon.author,
                           maxLines: 1,
                           style: GoogleFonts.nunito(
                               color: GREY3,
