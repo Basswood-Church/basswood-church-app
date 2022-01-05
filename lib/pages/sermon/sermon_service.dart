@@ -18,11 +18,11 @@ class SermonService {
       return _decoded.items
           .map((item) => SermonEntity(
                 title: item.title,
-                summary: item.author +
-                    ' ' +
-                    DateFormat('EEEE, MMMM d, y')
-                        .format(item.pubDate)
-                        .toString(),
+                author: item.author,
+                time: DateFormat('HH:MM').format(item.pubDate).toString(),
+                date: DateFormat('EEEE, MMMM d   ')
+                    .format(item.pubDate)
+                    .toString(),
                 link: item.enclosure.url,
               ))
           .toList();
