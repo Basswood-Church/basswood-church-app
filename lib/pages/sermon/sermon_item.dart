@@ -45,13 +45,13 @@ class SermonItem extends StatelessWidget {
                       maxLines: 1,
                       style: GoogleFonts.nunito(
                           color: BODY2,
-                          fontSize: 19.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold)),
                   Text(sermon.date,
                       maxLines: 1,
                       style: GoogleFonts.nunito(
                           color: GREY3,
-                          fontSize: 17.0,
+                          fontSize: 16.0,
                           fontWeight: FontWeight.w400)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -61,7 +61,7 @@ class SermonItem extends StatelessWidget {
                           maxLines: 1,
                           style: GoogleFonts.nunito(
                               color: GREY3,
-                              fontSize: 17.0,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400)),
                     ],
                   ),
