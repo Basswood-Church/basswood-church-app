@@ -127,7 +127,7 @@ class _HomeState extends State<Home> {
               child: Container(
                   child: _currentIndex == 0
                       ? BibleReadingPlan(numRefocuses: _numRefocuses)
-                      : tabScreens[_currentIndex],
+                      : const SermonList(),
                   alignment: Alignment.center)),
           Container(
             height: showPlayer ? 120 : 0,
@@ -361,17 +361,19 @@ class _HomeState extends State<Home> {
         AudioManager.instance.stop();
         _currentIndex = index;
       });
-    } else if (index == 1) {
+    } else {
       setState(() {
         showPlayer = false;
         AudioManager.instance.stop();
-        _currentIndex = index;
+        _currentIndex = 1;
       });
-    } else if (index == 2) {
-      launchURL('https://www.basswoodchurch.net/give');
-    } else if (index == 3) {
-      launchURL('https://www.basswoodchurch.net/bulletin');
     }
+
+    // } else if (index == 2) {
+    //   launchURL('https://www.basswoodchurch.net/give');
+    // } else if (index == 3) {
+    //   launchURL('https://www.basswoodchurch.net/bulletin');
+    // }
     // setState(() {
     //   _currentIndex = index;
     // });
