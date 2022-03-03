@@ -200,13 +200,30 @@ class _HomeState extends State<Home> {
                       playMode = AudioManager.instance.nextMode();
                       setState(() {});
                     }),
-                IconButton(
+                Row(children: [
+                  IconButton(
                     iconSize: 36,
                     icon: Icon(
-                      Icons.skip_previous,
+                      Icons.replay_10,
                       color: GREY3,
                     ),
-                    onPressed: () => AudioManager.instance.previous()),
+                    onPressed: () {
+                      setState(() {
+                        _slider =
+                            _slider - (1 / _duration.inMilliseconds * 10000);
+                        if (_slider < 0) {
+                          _slider = 0;
+                        }
+
+                        Duration msec = Duration(
+                            milliseconds:
+                                (_duration.inMilliseconds * _slider).round());
+
+                        AudioManager.instance.seekTo(msec);
+                      });
+                    },
+                  )
+                ]),
                 IconButton(
                   onPressed: () async {
                     bool playing = await AudioManager.instance.playOrPause();
@@ -219,13 +236,31 @@ class _HomeState extends State<Home> {
                     color: GREY3,
                   ),
                 ),
-                IconButton(
+                Row(children: [
+                  IconButton(
                     iconSize: 36,
                     icon: Icon(
-                      Icons.skip_next,
+                      Icons.forward_30,
                       color: GREY3,
                     ),
-                    onPressed: () => AudioManager.instance.next()),
+                    onPressed: () {
+                      setState(() {
+                        _slider =
+                            _slider + (1 / _duration.inMilliseconds * 30000);
+
+                        if (_slider > 1) {
+                          _slider = 1;
+                        }
+
+                        Duration msec = Duration(
+                            milliseconds:
+                                (_duration.inMilliseconds * _slider).round());
+
+                        AudioManager.instance.seekTo(msec);
+                      });
+                    },
+                  )
+                ]),
                 IconButton(
                     icon: Icon(
                       Icons.stop,
