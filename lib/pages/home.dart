@@ -8,6 +8,7 @@ import 'bulletin_page.dart';
 import 'sermon/sermon_list.dart';
 import '../utils/color_scheme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _HomeState extends State<Home> {
   double _sliderVolume;
   num curIndex = 0;
   PlayMode playMode = AudioManager.instance.playMode;
+  String currentUrl = '';
 
   @override
   void initState() {
@@ -44,7 +46,11 @@ class _HomeState extends State<Home> {
 
     tabScreens = [
       null,
-      const SermonList(),
+      SermonList(urlCallback: (str) {
+        setState(() {
+          currentUrl = str;
+        });
+      }),
       GivingPageWidget(),
       BulletinPageWidget(),
     ];
@@ -126,8 +132,18 @@ class _HomeState extends State<Home> {
           Expanded(
               child: Container(
                   child: _currentIndex == 0
-                      ? BibleReadingPlan(numRefocuses: _numRefocuses)
-                      : const SermonList(),
+                      ? BibleReadingPlan(
+                          numRefocuses: _numRefocuses,
+                          urlCallback: (str) {
+                            setState(() {
+                              currentUrl = str;
+                            });
+                          })
+                      : SermonList(urlCallback: (str) {
+                          setState(() {
+                            currentUrl = str;
+                          });
+                        }),
                   alignment: Alignment.center)),
           Container(
             height: showPlayer ? 120 : 0,
@@ -181,7 +197,8 @@ class _HomeState extends State<Home> {
         decoration: new BoxDecoration(color: GREY3),
         padding: EdgeInsets.symmetric(vertical: 1),
         child: Column(children: <Widget>[
-          //////////
+          /// Text(currentUrl),
+
           Container(
               color: MAIN1,
               child: Padding(
@@ -261,6 +278,18 @@ class _HomeState extends State<Home> {
                     },
                   )
                 ]),
+                IconButton(
+                    icon: Icon(
+                      Icons.share,
+                      color: GREY3,
+                    ),
+                    onPressed: () async {
+                      await FlutterShare.share(
+                        title: 'Share',
+                        text: 'Christ the King Church',
+                        linkUrl: currentUrl,
+                      );
+                    }),
                 IconButton(
                     icon: Icon(
                       Icons.stop,

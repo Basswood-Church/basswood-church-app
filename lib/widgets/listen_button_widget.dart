@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import '../widgets/green_button.dart';
 
 class ListenButtonWidget extends StatefulWidget {
-  ListenButtonWidget({this.title, this.description, this.url});
+  final void Function(String url) urlCallback;
+  ListenButtonWidget({
+    this.title,
+    this.description,
+    this.url,
+    this.urlCallback,
+  });
   String title;
   String description;
   String url;
@@ -22,6 +28,7 @@ class _ListenButtonWidgetState extends State<ListenButtonWidget> {
         text: '',
         icon: Icons.headset,
         onPressed: () {
+          widget.urlCallback(widget.url);
           if (AudioManager.instance.isPlaying) {
             AudioManager.instance.stop();
           } else {

@@ -6,9 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/listen_button_widget.dart';
 
 class SermonItem extends StatelessWidget {
+  final void Function(String url) urlCallback;
+
   const SermonItem({
     Key key,
     this.sermon,
+    this.urlCallback,
   }) : super(key: key);
 
   final SermonEntity sermon;
@@ -77,6 +80,7 @@ class SermonItem extends StatelessWidget {
                       child: ListenButtonWidget(
                           title: sermon.title,
                           description: 'Welcome to the Feast',
+                          urlCallback: urlCallback,
                           url: sermon.link)),
                 ],
               ),

@@ -17,7 +17,11 @@ import '../widgets/green_button.dart';
 import 'reading_page.dart';
 
 class BibleReadingPlan extends StatelessWidget {
-  const BibleReadingPlan({this.numRefocuses});
+  final void Function(String url) urlCallback;
+  const BibleReadingPlan({
+    this.numRefocuses,
+    this.urlCallback,
+  });
 
   final int numRefocuses;
 
@@ -33,6 +37,7 @@ class BibleReadingPlan extends StatelessWidget {
             ? BrcDaysList(
                 brcDays: snapshot.data,
                 numRefocuses: numRefocuses,
+                urlCallback: urlCallback,
               )
             : const Center(child: CircularProgressIndicator());
       });
@@ -74,8 +79,13 @@ class BrcDay {
 }
 
 class BrcDaysList extends StatefulWidget {
-  const BrcDaysList({Key key, this.brcDays, this.numRefocuses})
-      : super(key: key);
+  final void Function(String url) urlCallback;
+  const BrcDaysList({
+    Key key,
+    this.brcDays,
+    this.numRefocuses,
+    this.urlCallback,
+  }) : super(key: key);
   final List<BrcDay> brcDays;
   final int numRefocuses;
 
@@ -185,6 +195,7 @@ class _BrcDaysListState extends State<BrcDaysList> {
                       child: ListenButtonWidget(
                           title: brcDays[index].passage.toString(),
                           description: 'Welcome to the Feast',
+                          urlCallback: widget.urlCallback,
                           url: 'https://ctk-app.jcb3.de/listen/' +
                               Uri.encodeComponent(
                                   brcDays[index].passage.toString().trim() +
