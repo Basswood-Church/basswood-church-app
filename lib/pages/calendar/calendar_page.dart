@@ -7,12 +7,14 @@ import 'package:http/http.dart' as http;
 import 'package:icalendar_parser/icalendar_parser.dart';
 import 'dart:convert';
 import 'package:dart_date/dart_date.dart';
-import './calendar_event_entity.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
+
 import 'package:geocoding/geocoding.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../utils/color_scheme.dart';
+
+import 'calendar_event_entity.dart';
+import 'calendar_service.dart';
+import './widgets/lat_lng_map.dart';
 
 class CalendarPageWidget extends StatefulWidget {
   @override
@@ -55,34 +57,10 @@ class _CalendarPageWidgetState extends State {
                 onDaySelected: _onDaySelected,
                 selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
               ),
-              SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 250.0,
-                  child: FlutterMap(
-                    options: MapOptions(
-                      center: LatLng(36.0263899, -84.1492908),
-                      zoom: 15.0,
-                    ),
-                    layers: [
-                      TileLayerOptions(
-                        urlTemplate:
-                            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                        subdomains: ['a', 'b', 'c'],
-                      ),
-                      MarkerLayerOptions(
-                        markers: [
-                          // Marker(
-                          //   width: 80.0,
-                          //   height: 80.0,
-                          //   point: LatLng(36.0263899, -84.1492908),
-                          //   builder: (ctx) => Container(
-                          //     child: FlutterLogo(),
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    ],
-                  )),
+              const LatLngMap(
+                latitude: 36.0263899,
+                longitude: -84.1492908,
+              ),
             ],
           )),
     );
