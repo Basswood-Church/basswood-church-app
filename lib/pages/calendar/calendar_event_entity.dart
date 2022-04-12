@@ -1,26 +1,25 @@
-class CalendarEventEntity {
-  final String title;
-  final DateTime datetime;
+// ignore: implementation_imports
+import 'package:dart_date/src/dart_date.dart';
 
+class CalendarEventEntity {
   const CalendarEventEntity({
-    this.title,
-    this.datetime,
-    // {
-    //   type: VEVENT,
-    //   dtstart: {dt: 20211120T150000Z},
-    //   dtend: {dt: 20211120T180000Z},
-    //   dtstamp: {dt: 20220408T170254Z},
-    //   uid: 1ulr45p2dbfg9oj3gj3q8tb81l@google.com,
-    //   description: ,
-    //   lastModified: {dt: 20211118T144911Z},
-    //   location: https://goo.gl/maps/AEj9DHaisJi5HK749,
-    //   sequence: 0,
-    //   status: CONFIRMED,
-    //   summary: Future Men Hike,
-    //   transp: OPAQUE
-    // }
+    this.summary,
+    this.description,
+    this.location,
+    this.dtstart,
+    this.dtend,
+    this.latitude,
+    this.longitude,
   });
 
+  final String summary;
+  final String description;
+  final DateTime dtstart;
+  final DateTime dtend;
+  final String location;
+  final double latitude;
+  final double longitude;
+
   @override
-  String toString() => title;
+  String toString() => summary;
 }
