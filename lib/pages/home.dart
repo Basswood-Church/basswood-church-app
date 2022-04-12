@@ -1,5 +1,6 @@
 import '../util.dart';
 import 'giving_page.dart';
+import 'calendar/calendar_page.dart';
 import 'package:audio_manager/audio_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -121,7 +122,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            _currentIndex == 0 ? 'Christ the King Church' : 'Sermons',
+            _tabTitle(),
             style: GoogleFonts.barlow(
                 color: GREY3, fontSize: 22, fontWeight: FontWeight.w500),
           ),
@@ -130,21 +131,8 @@ class _HomeState extends State<Home> {
         ),
         body: Column(children: <Widget>[
           Expanded(
-              child: Container(
-                  child: _currentIndex == 0
-                      ? BibleReadingPlan(
-                          numRefocuses: _numRefocuses,
-                          urlCallback: (str) {
-                            setState(() {
-                              currentUrl = str;
-                            });
-                          })
-                      : SermonList(urlCallback: (str) {
-                          setState(() {
-                            currentUrl = str;
-                          });
-                        }),
-                  alignment: Alignment.center)),
+              child:
+                  Container(child: _tabContent(), alignment: Alignment.center)),
           Container(
             height: showPlayer ? 120 : 0,
             width: double.maxFinite,
@@ -180,6 +168,11 @@ class _HomeState extends State<Home> {
                   BottomNavigationBarItem(
                     icon: Icon(Icons.headset),
                     label: 'Sermons',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.calendar_today),
+                    backgroundColor: MAIN1,
+                    label: 'Calendar',
                   ),
                   // BottomNavigationBarItem(
                   //   icon: Icon(Icons.attach_money),
@@ -418,20 +411,46 @@ class _HomeState extends State<Home> {
     ]);
   }
 
-  void onTabTapped(int index) {
-    if (index == 0) {
-      setState(() {
-        showPlayer = false;
-        AudioManager.instance.stop();
-        _currentIndex = index;
-      });
-    } else {
-      setState(() {
-        showPlayer = false;
-        AudioManager.instance.stop();
-        _currentIndex = 1;
+  String _tabTitle() {
+    if (_currentIndex == 1) {
+      return 'Sermons';
+    }
+
+    if (_currentIndex == 2) {
+      return 'Calendar';
+    }
+
+    return 'Christ the King Church';
+  }
+
+  Widget _tabContent() {
+    if (_currentIndex == 1) {
+      return SermonList(urlCallback: (str) {
+        setState(() {
+          currentUrl = str;
+        });
       });
     }
+
+    if (_currentIndex == 2) {
+      return CalendarPageWidget();
+    }
+
+    return BibleReadingPlan(
+        numRefocuses: _numRefocuses,
+        urlCallback: (str) {
+          setState(() {
+            currentUrl = str;
+          });
+        });
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      showPlayer = false;
+      AudioManager.instance.stop();
+      _currentIndex = index;
+    });
 
     // } else if (index == 2) {
     //   launchURL('https://www.basswoodchurch.net/give');

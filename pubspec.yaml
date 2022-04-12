@@ -35,6 +35,11 @@ dependencies:
   google_fonts: ^1.1.0
   webfeed: ^0.7.0
   flutter_share: ^2.0.0
+  table_calendar: ^3.0.5
+  icalendar_parser: any
+  dart_date: ^1.1.1
+  flutter_map: ^0.12.0
+  geocoding: ^1.0.5
 
 flutter_icons:
   android: "launcher_icon"
