@@ -1,5 +1,5 @@
 import 'package:dart_date/dart_date.dart';
-import 'package:geocoding/geocoding.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:icalendar_parser/icalendar_parser.dart';
 
@@ -34,28 +34,17 @@ class CalendarService {
   }
 
   static Future<CalendarEventEntity> parseCalendarEvent(dynamic item) async {
+    print(item);
     final String _location = item['location'].toString();
 
-    double _latitude = 0;
-    double _longitude = 0;
-
-    if (_location.isNotEmpty) {
-      try {
-        final List<Location> locations = await locationFromAddress(_location);
-        _latitude = locations.first.latitude;
-        _longitude = locations.first.longitude;
-      } on Exception catch (_) {}
-    }
-
-    return CalendarEventEntity(
+    CalendarEventEntity entity = CalendarEventEntity(
       summary: item['summary'].toString(),
       description: item['description'].toString(),
       location: _location,
       dtstart: DateTime.parse(item['dtstart']['dt'].toString()),
       dtend: DateTime.parse(item['dtend']['dt'].toString()),
-      latitude: _latitude,
-      longitude: _longitude,
     );
+    return entity;
   }
 
   static DateTime firstDay(List<CalendarEventEntity> list) {
@@ -84,13 +73,11 @@ class CalendarService {
     List<CalendarEventEntity> dayList = [];
 
     for (final CalendarEventEntity item in list) {
-      if ((item.dtstart.getMicrosecondsSinceEpoch <=
-              day.getMicrosecondsSinceEpoch) &&
-          (item.dtend.getMicrosecondsSinceEpoch >=
-              day.getMicrosecondsSinceEpoch)) {
+      if (day.isSameDay(item.dtend)) {
         dayList.add(item);
       }
     }
+
     return dayList;
   }
 }

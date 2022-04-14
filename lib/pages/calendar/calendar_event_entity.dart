@@ -1,24 +1,46 @@
-// ignore: implementation_imports
-import 'package:dart_date/src/dart_date.dart';
+import 'package:geocoding/geocoding.dart';
 
 class CalendarEventEntity {
-  const CalendarEventEntity({
+  CalendarEventEntity({
     this.summary,
     this.description,
     this.location,
     this.dtstart,
     this.dtend,
-    this.latitude,
-    this.longitude,
   });
+
+  bool isCoord() {
+    return (latitude != 0) && (longitude != 0);
+  }
 
   final String summary;
   final String description;
   final DateTime dtstart;
   final DateTime dtend;
   final String location;
-  final double latitude;
-  final double longitude;
+  double latitude = 0;
+  double longitude = 0;
+
+  Future<double> getLatitude() async {
+    return latitude;
+  }
+
+  Future<double> getLongitude() async {
+    return longitude;
+  }
+
+  Future<bool> loadCoords() async {
+    if (location.isNotEmpty && latitude == 0 && longitude == 00) {
+      try {
+        final List<Location> locations = await locationFromAddress(location);
+        latitude = locations.first.latitude;
+        longitude = locations.first.longitude;
+        return true;
+      } on Exception catch (_) {}
+    }
+
+    return false;
+  }
 
   @override
   String toString() => summary;

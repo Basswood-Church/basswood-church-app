@@ -7,7 +7,7 @@ class LatLngMap extends StatelessWidget {
   final double latitude;
   final double longitude;
 
-  const LatLngMap({
+  LatLngMap({
     Key key,
     this.latitude,
     this.longitude,
@@ -21,11 +21,11 @@ class LatLngMap extends StatelessWidget {
         color: MAIN1,
         child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 250.0,
+            height: 400.0,
             child: FlutterMap(
               options: MapOptions(
                 center: LatLng(latitude, longitude),
-                zoom: 15.0,
+                zoom: 15,
               ),
               layers: [
                 TileLayerOptions(
