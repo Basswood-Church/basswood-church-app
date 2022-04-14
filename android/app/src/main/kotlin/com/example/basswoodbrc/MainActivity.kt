@@ -1,4 +1,4 @@
-package com.example.basswoodbrc
+package info.ctkchurch.app
 
 import io.flutter.embedding.android.FlutterActivity
 

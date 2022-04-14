@@ -1,15 +1,21 @@
 import 'package:audio_manager/audio_manager.dart';
 import 'package:flutter/material.dart';
+import '../widgets/green_button.dart';
 
 class ListenButtonWidget extends StatefulWidget {
-  ListenButtonWidget({this.title, this.description, this.url});
+  final void Function(String url) urlCallback;
+  ListenButtonWidget({
+    this.title,
+    this.description,
+    this.url,
+    this.urlCallback,
+  });
   String title;
   String description;
   String url;
 
   @override
-  State<StatefulWidget> createState() =>
-      _ListenButtonWidgetState();
+  State<StatefulWidget> createState() => _ListenButtonWidgetState();
 }
 
 class _ListenButtonWidgetState extends State<ListenButtonWidget> {
@@ -17,19 +23,19 @@ class _ListenButtonWidgetState extends State<ListenButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[FlatButton.icon(
-        color: Colors.blueGrey,
-        icon: const Icon(Icons.headset),
-        label: const Text('LISTEN'),
+    return Column(children: <Widget>[
+      GreenButton(
+        text: '',
+        icon: Icons.headset,
         onPressed: () {
+          widget.urlCallback(widget.url);
           if (AudioManager.instance.isPlaying) {
             AudioManager.instance.stop();
           } else {
             AudioManager.instance
                 .start(widget.url, widget.title,
                     desc: widget.description,
-                    cover:
-                        'https://www.basswoodchurch.net/wp-content/uploads/powerpress/BasswoodLogo-459.jpg')
+                    cover: 'https://ctk-app.jcb3.de/icon.jpg')
                 .then((err) {
               print('Error' + err.toString());
             });
@@ -37,6 +43,8 @@ class _ListenButtonWidgetState extends State<ListenButtonWidget> {
           setState(() {
             playing = !playing;
           });
-        })]);
+        },
+      ),
+    ]);
   }
 }

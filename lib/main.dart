@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'pages/home.dart';
-
+import 'utils/color_scheme.dart';
 
 void main() => runApp(MyApp());
 
+/// flutter run --no-sound-null-safety
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
-          accentIconTheme:
-              Theme.of(context).accentIconTheme.copyWith(color: Colors.white),
-          accentColor: Colors.blueAccent,
-          primaryColor: Colors.blueGrey,
+          canvasColor: MAIN1,
           primaryIconTheme:
               Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
           primaryTextTheme: Theme.of(context)

@@ -2,18 +2,26 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:BasswoodChurch/widgets/listen_button_widget.dart';
+import '../widgets/listen_button_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../utils/color_scheme.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+import '../widgets/green_button.dart';
 
 import 'reading_page.dart';
 
 class BibleReadingPlan extends StatelessWidget {
-  const BibleReadingPlan({this.numRefocuses});
+  final void Function(String url) urlCallback;
+  const BibleReadingPlan({
+    this.numRefocuses,
+    this.urlCallback,
+  });
 
   final int numRefocuses;
 
@@ -29,6 +37,7 @@ class BibleReadingPlan extends StatelessWidget {
             ? BrcDaysList(
                 brcDays: snapshot.data,
                 numRefocuses: numRefocuses,
+                urlCallback: urlCallback,
               )
             : const Center(child: CircularProgressIndicator());
       });
@@ -38,7 +47,7 @@ Future<List<BrcDay>> _brcDaysFuture = _fetchBrcDays(http.Client());
 
 Future<List<BrcDay>> _fetchBrcDays(http.Client client) async {
   final Response response =
-      await client.get('https://www.basswoodchurch.net/app/brc.json');
+      await client.get('https://ctk-app.jcb3.de/brc.json');
 
   // Use the compute function to run parseBrcDays in a separate isolate
   return compute(parseBrcDays, response.body);
@@ -70,14 +79,18 @@ class BrcDay {
 }
 
 class BrcDaysList extends StatefulWidget {
-  const BrcDaysList({Key key, this.brcDays, this.numRefocuses})
-      : super(key: key);
+  final void Function(String url) urlCallback;
+  const BrcDaysList({
+    Key key,
+    this.brcDays,
+    this.numRefocuses,
+    this.urlCallback,
+  }) : super(key: key);
   final List<BrcDay> brcDays;
   final int numRefocuses;
 
   @override
-  _BrcDaysListState createState() =>
-      _BrcDaysListState(brcDays: brcDays);
+  _BrcDaysListState createState() => _BrcDaysListState(brcDays: brcDays);
 }
 
 class _BrcDaysListState extends State<BrcDaysList> {
@@ -127,38 +140,70 @@ class _BrcDaysListState extends State<BrcDaysList> {
 
   Widget buildBrcDay(BuildContext context, int index) {
     return Container(
+      color: MAIN1,
       child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(
-                  (brcDays[index].passage).isEmpty ? Icons.mood : Icons.book),
-              title: Text(DateFormat('EEEE, MMMM d, y')
-                  .format(brcDays[index].date)
-                  .toString()),
-              subtitle: Text(brcDays[index].friendlyPassage),
-            ),
-            ButtonBar(
-              children: <Widget>[
-                FlatButton.icon(
-                  color: Colors.blueGrey,
-                  icon: const Icon(Icons.remove_red_eye),
-                  label: const Text('READ'),
-                  onPressed: () {
-                    Navigator.push(
-                        context, ReadingPage(brcDays[index].passage));
-                  },
-                ),
-                ListenButtonWidget(
-                    title: brcDays[index].passage.toString(),
-                    description: 'Welcome to the Feast',
-                    url: 'https://www.basswoodchurch.net/' +
-                        Uri.encodeComponent(
-                            brcDays[index].passage.toString() + '.mp3')),
-              ],
-            ),
-          ],
+        color: MAIN1,
+        child: Container(
+          height: 100.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const SizedBox(
+                width: 11.0,
+              ),
+              Expanded(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      DateFormat('EEEE, MMMM d, y')
+                          .format(brcDays[index].date)
+                          .toString(),
+                      maxLines: 1,
+                      style: GoogleFonts.nunito(
+                          color: BODY2,
+                          fontSize: 19.0,
+                          fontWeight: FontWeight.bold)),
+                  Text(brcDays[index].friendlyPassage,
+                      maxLines: 1,
+                      style: GoogleFonts.nunito(
+                          color: GREY3,
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.w400)),
+                ],
+              )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10.0),
+                      child: GreenButton(
+                        text: '',
+                        icon: Icons.remove_red_eye,
+                        onPressed: () {
+                          Navigator.push(
+                              context, ReadingPage(brcDays[index].passage));
+                        },
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10.0),
+                      child: ListenButtonWidget(
+                          title: brcDays[index].passage.toString(),
+                          description: 'Welcome to the Feast',
+                          urlCallback: widget.urlCallback,
+                          url: 'https://ctk-app.jcb3.de/listen/' +
+                              Uri.encodeComponent(
+                                  brcDays[index].passage.toString().trim() +
+                                      '.mp3'))),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
